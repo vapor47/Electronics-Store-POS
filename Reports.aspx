@@ -16,21 +16,16 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <div>
-            <asp:Menu ID="Menu1" runat="server" Orientation="Horizontal" BackColor="#F7F6F3" DynamicHorizontalOffset="2" Font-Names="Verdana" Font-Size="0.8em" ForeColor="#7C6F57" StaticSubMenuIndent="10px">
-                <DynamicHoverStyle BackColor="#7C6F57" ForeColor="White" />
-                <DynamicMenuItemStyle HorizontalPadding="5px" VerticalPadding="2px" />
-                <DynamicMenuStyle BackColor="#F7F6F3" />
-                <DynamicSelectedStyle BackColor="#5D7B9D" />
-                <Items>
-                    <asp:MenuItem NavigateUrl="Default.aspx" Text="Home" Value="Home"></asp:MenuItem>
-                    <asp:MenuItem Text="New Item" Value="New Item"></asp:MenuItem>
-                </Items>
-                <StaticHoverStyle BackColor="#7C6F57" ForeColor="White" />
-                <StaticMenuItemStyle HorizontalPadding="5px" VerticalPadding="2px" />
-                <StaticSelectedStyle BackColor="#5D7B9D" />
-            </asp:Menu>
-        </div>
+        <asp:Menu ID="Menu1" runat="server" OnMenuItemClick="Menu1_MenuItemClick">
+            <Items>
+                <asp:MenuItem Selected="True" Text="Sales Report" Value="0"></asp:MenuItem>
+                <asp:MenuItem Text="Inventory Report" Value="1"></asp:MenuItem>
+                <asp:MenuItem Text="Restock Report" Value="2"></asp:MenuItem>
+                <asp:MenuItem Text="Customer Purchase History" Value="3"></asp:MenuItem>
+                <asp:MenuItem Text="Customer Information" Value="4"></asp:MenuItem>
+                <asp:MenuItem Text="Employee Information" Value="5"></asp:MenuItem>
+            </Items>
+        </asp:Menu>
         <asp:MultiView ID="MultiView1" runat="server" ActiveViewIndex="0">
             <asp:View ID="TotalSalesReport" runat="server">
                 <asp:Label ID="Label6" runat="server" Font-Bold="True" Font-Size="XX-Large" Font-Underline="True" Text="Sales Report"></asp:Label>
@@ -80,7 +75,7 @@
             <asp:View ID="CustomerPurchaseHistory" runat="server">
             </asp:View>
             <asp:View ID="CustomerInfo" runat="server">
-                <asp:Label ID="Label2" runat="server" Font-Bold="True" Font-Size="XX-Large" Font-Underline="True" Text="Sales Report"></asp:Label>
+                <asp:Label ID="Label2" runat="server" Font-Bold="True" Font-Size="XX-Large" Font-Underline="True" Text="Customer Information"></asp:Label>
                 <br />
                 <asp:Panel ID="Panel6" runat="server">
                     <asp:Label ID="Label3" runat="server" Font-Size="Large" Text="Additional Search Tools: "></asp:Label>

@@ -98,5 +98,11 @@ namespace ElectronicsPOS
             //MVOrder.ActiveViewIndex = 1;
             MultiView1.SetActiveView(CustomerInfo);
         }
+
+        protected void Menu1_MenuItemClick(object sender, MenuEventArgs e)
+        {
+            int index = Int32.Parse(e.Item.Value);
+            MultiView1.ActiveViewIndex = index;
+        }
     }
 }
