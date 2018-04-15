@@ -1,0 +1,82 @@
+@{
+
+    Validation.RequireField("Fname", "You must enter a first name.");
+    Validation.RequireField("Lname", "You must enter a last name.");
+    Validation.RequireField("privledge", "You must enter a privledge.");
+    Validation.RequireField("employeeID", "You must enter an employee ID.");
+
+    var Fname = "";
+    var Mname = "";
+    var Lname = "";
+    var privledge = "";
+    Var employeeID = "";
+
+    if(IsPost && Validation.IsValid()){
+       Fname = Request.Form["Fname"];
+       Mname = Request.Form["Mname"];
+       Lname = Request.Form["Lname"];
+       privledge = Request.Form["privledge"];
+       employeeID = Request.Form["employeeID"];
+
+       var db = Database.Open("EMPLOYEE");
+       var insertCommand = "INSERT INTO EMPLOYEE (Fname, Mname, Lname, privledge, employeeID) Values(@0, @1, @2, @3, @4)";
+       db.Execute(insertCommand, Fname, Mname, Lname, privledge, employeeID);
+       Response.Redirect("~/EMPLOYEE");
+    }
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Add an Employee</title>
+      <style type="text/css">
+    .field-validation-error {
+      font-weight:bold;
+      color:red;
+      background-color:yellow;
+     }
+    .validation-summary-errors{
+      border:2px dashed red;
+      color:red;
+      background-color:yellow;
+      font-weight:bold;
+      margin:12px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Add an Employee</h1>
+  @Html.ValidationSummary()
+  <form method="post">
+    <fieldset>
+      <legend>Employee Information</legend>
+      <p><label for="Lname">First Name:</label>
+         <input type="text" name="Fname" value="@Request.Form["Fname"]" />
+          @Html.ValidationMessage("Fname")
+      </p>
+
+      <p><label for="Mname">Middle Name:</label>
+         <input type="text" name="Mname" value="@Request.Form["Mname"]" />
+      </p>
+
+      <p><label for="Lname">Last Name:</label>
+         <input type="text" name="Lname" value="@Request.Form["Lname"]" />
+         @Html.ValidationMessage("Lname")
+      </p>
+
+      <p><label for="privledge">Privledge:</label>
+         <input type="int" name="privledge" value="@Request.Form["privledge"]" />
+          @Html.ValidationMessage("privledge")
+      </p>
+
+      <p><label for="employeeID">Employee ID:</label>
+         <input type="int" name="employeeID" value="@Request.Form["employeeID"]" />
+          @Html.ValidationMessage("employeeID")
+      </p>
+
+      <p><input type="submit" name="buttonSubmit" value="Add Employee" /></p>
+    </fieldset>
+  </form>
+</body>
+</html>
