@@ -1,0 +1,68 @@
+@{
+
+    Validation.RequireField("invoiceID", "You must enter an invoice ID.");
+    Validation.RequireField("customerID", "You must enter a valid customer ID.");
+    Validation.RequireField("employeeID", "You must enter a valid employee ID.");
+
+    var invoiceID = "";
+    var cusomterID = "";
+    var employeeID = "";
+
+    if(IsPost && Validation.IsValid()){
+       invoiceID = Request.Form["invoiceID"];
+       customerID = Request.Form["customerID"];
+       employeeID = Request.Form["employeeID"];
+
+       var db = Database.Open("INVOICE");
+       var insertCommand = "INSERT INTO INVOICE(invoiceID, customerID, employeeID, 0) Values(@0, @1, @2, @3)";
+       db.Execute(insertCommand, invoiceID, customerID, employeeID, 0);
+       Response.Redirect("~/INVOICE");
+    }
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Add an Invoice</title>
+      <style type="text/css">
+    .field-validation-error {
+      font-weight:bold;
+      color:red;
+      background-color:yellow;
+     }
+    .validation-summary-errors{
+      border:2px dashed red;
+      color:red;
+      background-color:yellow;
+      font-weight:bold;
+      margin:12px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Add an Invoice</h1>
+  @Html.ValidationSummary()
+  <form method="post">
+    <fieldset>
+      <legend>Customer Information</legend>
+      <p><label for="invoiceID">Invoice ID:</label>
+         <input type="int" name="invoiceID" value="@Request.Form["invoiceID"]" />
+          @Html.ValidationMessage("invoiceID")
+      </p>
+
+      <p><label for="customerID">Customer ID:</label>
+         <input type="int" name="customerID" value="@Request.Form["customerID"]" />
+          @Html.ValidationMessage("customerID")
+      </p>
+
+      <p><label for="employeeID">Employee ID:</label>
+         <input type="int" name="employeeID" value="@Request.Form["employeeID"]" />
+         @Html.ValidationMessage("employeeID")
+      </p>
+
+      <p><input type="submit" name="buttonSubmit" value="Add Invoice" /></p>
+    </fieldset>
+  </form>
+</body>
+</html>
