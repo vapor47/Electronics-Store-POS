@@ -7,8 +7,9 @@ using System.Web.UI.WebControls;
 using System.Web.Configuration;
 using System.Data.SqlClient;
 
-public partial class CheckStock : System.Web.UI.Page
+public partial class EditPrice : System.Web.UI.Page
 {
+    
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
@@ -23,7 +24,7 @@ public partial class CheckStock : System.Web.UI.Page
             ListItem defaultDept = new ListItem("Select department", "-1");
             DepartmentList.Items.Insert(0, defaultDept);
             con.Close();
-       
+
 
         }
 
@@ -65,11 +66,35 @@ public partial class CheckStock : System.Web.UI.Page
         con.Close();
 
         con.Open();
-        
+
         query = "select store_price from store_price_record where productID = " + ProductList.SelectedValue + " ORDER BY start_date DESC";   //get current quantity
         cmd = new SqlCommand(query, con);
 
         decimal price = Convert.ToDecimal(cmd.ExecuteScalar());
-        PriceLabel.Text = "$" +  price.ToString();
+        PriceLabel.Text = "$" + price.ToString();
+    }
+
+    protected void ApplyBtn_Click(object sender, EventArgs e)
+    {
+        
+        SqlConnection con = new SqlConnection(
+              WebConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString);
+        con.Open();
+        decimal new_price = decimal.Parse(PriceTxt.Text);
+
+        string query = "insert into store_price_record values (" + ProductList.SelectedValue + ", GETDATE(), " 
+            + new_price + ")";     //set new price
+        SqlCommand cmd = new SqlCommand(query, con);
+        cmd.ExecuteNonQuery();
+        con.Close();
+
+
+        DisplayMessage(this, "Successful Restock");
+    }
+
+    public static void DisplayMessage(Control page, String msg)
+    {
+        string myScript = String.Format("alert('{0}')", msg);
+        ScriptManager.RegisterStartupScript(page, page.GetType(), "MyScript", myScript, true);
     }
 }

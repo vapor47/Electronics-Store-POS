@@ -1,4 +1,6 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="CheckStock.aspx.cs" Inherits="CheckStock" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="EditPrice.aspx.cs" Inherits="EditPrice" %>
+
+
 
 <!DOCTYPE html>
 
@@ -18,6 +20,13 @@
         }
         .auto-style4 {
             height: 23px;
+        }
+        .auto-style5 {
+            width: 570px;
+            height: 26px;
+        }
+        .auto-style6 {
+            height: 26px;
         }
     </style>
 </head>
@@ -45,6 +54,18 @@
                     <td class="auto-style2">Current Price:</td>
                     <td>
                         <asp:Label ID="PriceLabel" runat="server" Text=""></asp:Label>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="auto-style5">New Price:</td>
+                    <td class="auto-style6">
+                        $<asp:TextBox ID="PriceTxt" runat="server"></asp:TextBox>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="auto-style2">&nbsp;</td>
+                    <td>
+                        <asp:Button ID="ApplyBtn" runat="server" Text="Apply" OnClick="ApplyBtn_Click" />
                     </td>
                 </tr>
             </table>

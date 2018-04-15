@@ -63,7 +63,7 @@ public partial class Restock : System.Web.UI.Page
 
     protected void Button1_Click(object sender, EventArgs e)
     {
-        decimal new_price = decimal.Parse(PriceTxt.Text);
+        
         SqlConnection con = new SqlConnection(
                  WebConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString);
         con.Open();
@@ -79,12 +79,13 @@ public partial class Restock : System.Web.UI.Page
         cmd.ExecuteNonQuery();
         con.Close();
 
-        
-     
-        //decimal.TryParse(PriceTxt.Text, out new_price);
 
-            con.Open();
-        query = "insert into store_price_record values ("  + ProductList.SelectedValue + ", GETDATE(), " + new_price + ")" ;     //set new price
+
+
+        decimal stock_price = decimal.Parse(PriceTxt.Text);
+        con.Open();
+        query = "insert into Restock values ("  + ProductList.SelectedValue + ", " + SupplierList.SelectedValue 
+            + ", GETDATE(), "  + Convert.ToInt32(quantityTxt.Text) + ", " + stock_price + ")" ;     //set new price
         cmd = new SqlCommand(query, con);
         cmd.ExecuteNonQuery();
         con.Close();
