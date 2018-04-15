@@ -1,0 +1,87 @@
+@{
+
+    Validation.RequireField("customerID", "You must enter a customer ID.");
+    Validation.RequireField("Fname", "You must enter a first name.");
+    Validation.RequireField("Lname", "You must enter a last name.");
+
+    var cusomterID = "";
+    var Fname = "";
+    var Lname = "";
+    var phoneNum = "";
+    var email = "";
+    var address = "";
+
+    if(IsPost && Validation.IsValid()){
+       cusomterID = Request.Form["cusomterID"];
+       Fname = Request.Form["Fname"];
+       Mname = Request.Form["Mname"];
+       Lname = Request.Form["Lname"];
+       phoneNum = Request.Form["phoneNum"];
+       email = Request.Form["email"];
+       address = Request.Form["address"];
+
+       var db = Database.Open("CUSTOMER");
+       var insertCommand = "INSERT INTO CUSTOMER (customerID, Fname, Mname, Lname, phoneNum, email, address) Values(@0, @1, @2, @3, @4, @5, @6)";
+       db.Execute(insertCommand, cusotmerID, Fname, Mname, Lname, phoneNum, email, address);
+       Response.Redirect("~/CUSTOMER");
+    }
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Add a Customer</title>
+      <style type="text/css">
+    .field-validation-error {
+      font-weight:bold;
+      color:red;
+      background-color:yellow;
+     }
+    .validation-summary-errors{
+      border:2px dashed red;
+      color:red;
+      background-color:yellow;
+      font-weight:bold;
+      margin:12px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Add a Customer</h1>
+  @Html.ValidationSummary()
+  <form method="post">
+    <fieldset>
+      <legend>Customer Information</legend>
+      <p><label for="customerID">Customer ID:</label>
+         <input type="int" name="customerID" value="@Request.Form["customerID"]" />
+          @Html.ValidationMessage("customerID")
+      </p>
+
+      <p><label for="Fname">First Name:</label>
+         <input type="text" name="Fname" value="@Request.Form["Fname"]" />
+          @Html.ValidationMessage("Fname")
+      </p>
+
+      <p><label for="Lname">Last Name:</label>
+         <input type="text" name="Lname" value="@Request.Form["Lname"]" />
+         @Html.ValidationMessage("Lname")
+      </p>
+
+      <p><label for="phoneNum">Phone number:</label>
+         <input type="text" name="phoneNum" value="@Request.Form["phoneNum"]" />
+      </p>
+
+      <p><label for="email">Email:</label>
+         <input type="email" name="email" value="@Request.Form["email"]" />
+      </p>
+
+      <p><label for="address">Address:</label>
+         <input type="address" name="address" value="@Request.Form["address"]" />
+      </p>
+
+      <p><input type="submit" name="buttonSubmit" value="Add Customer" /></p>
+    </fieldset>
+  </form>
+</body>
+</html>
