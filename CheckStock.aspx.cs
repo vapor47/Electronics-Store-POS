@@ -42,7 +42,7 @@ public partial class CheckStock : System.Web.UI.Page
             SqlConnection con = new SqlConnection(
                  WebConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString);
             con.Open();
-            string query = "select productID, name from PRODUCT where dept_no = " + DepartmentList.SelectedValue;
+            string query = "select productID, name from PRODUCT where dept_no = " + DepartmentList.SelectedValue + "ORDER BY name";
             SqlCommand cmd = new SqlCommand(query, con);
             ProductList.DataSource = cmd.ExecuteReader();
             ProductList.DataBind();

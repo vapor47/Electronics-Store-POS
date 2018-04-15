@@ -51,7 +51,7 @@ public partial class Restock : System.Web.UI.Page
             SqlConnection con = new SqlConnection(
                  WebConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString);
             con.Open();
-            string query = "select productID, name from PRODUCT where dept_no = " + DepartmentList.SelectedValue;
+            string query = "select productID, name from PRODUCT where dept_no = " + DepartmentList.SelectedValue + "ORDER BY name";
             SqlCommand cmd = new SqlCommand(query, con);
             ProductList.DataSource = cmd.ExecuteReader();
             ProductList.DataBind();
@@ -85,7 +85,7 @@ public partial class Restock : System.Web.UI.Page
         decimal stock_price = decimal.Parse(PriceTxt.Text);
         con.Open();
         query = "insert into Restock values ("  + ProductList.SelectedValue + ", " + SupplierList.SelectedValue 
-            + ", GETDATE(), "  + Convert.ToInt32(quantityTxt.Text) + ", " + stock_price + ")" ;     //set new price
+            + ", DATEADD (hour, -5, GETDATE()), " + Convert.ToInt32(quantityTxt.Text) + ", " + stock_price + ")" ;     //set new price
         cmd = new SqlCommand(query, con);
         cmd.ExecuteNonQuery();
         con.Close();

@@ -43,7 +43,7 @@ public partial class EditPrice : System.Web.UI.Page
             SqlConnection con = new SqlConnection(
                  WebConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString);
             con.Open();
-            string query = "select productID, name from PRODUCT where dept_no = " + DepartmentList.SelectedValue;
+            string query = "select productID, name from PRODUCT where dept_no = " + DepartmentList.SelectedValue + "ORDER BY name";
             SqlCommand cmd = new SqlCommand(query, con);
             ProductList.DataSource = cmd.ExecuteReader();
             ProductList.DataBind();
@@ -76,20 +76,22 @@ public partial class EditPrice : System.Web.UI.Page
 
     protected void ApplyBtn_Click(object sender, EventArgs e)
     {
-        
+        decimal new_price = decimal.Parse(PriceTxt.Text);
+        string query;
+        SqlCommand cmd;
         SqlConnection con = new SqlConnection(
               WebConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString);
         con.Open();
-        decimal new_price = decimal.Parse(PriceTxt.Text);
-
-        string query = "insert into store_price_record values (" + ProductList.SelectedValue + ", GETDATE(), " 
-            + new_price + ")";     //set new price
-        SqlCommand cmd = new SqlCommand(query, con);
-        cmd.ExecuteNonQuery();
-        con.Close();
 
 
-        DisplayMessage(this, "Successful Restock");
+            query = "insert into store_price_record values (" + ProductList.SelectedValue + ", DATEADD (hour, -5, GETDATE()), "
+               + new_price + ")";     //set new price
+            cmd = new SqlCommand(query, con);
+            cmd.ExecuteNonQuery();
+            con.Close();
+        
+
+        DisplayMessage(this, "New Price is set successfully.");
     }
 
     public static void DisplayMessage(Control page, String msg)
