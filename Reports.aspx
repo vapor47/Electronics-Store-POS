@@ -62,7 +62,6 @@
                     <div>
                     </div>
                     <asp:Button ID="Button1" runat="server" BorderColor="Black" BorderStyle="Solid" BorderWidth="3px" Font-Bold="True" Font-Names="Arial" Font-Overline="False" Font-Size="X-Large" ForeColor="Black" Height="70px" Text="Generate Report" Width="210px" OnClick="Button1_Click" />
-                    <asp:Button ID="Button3" runat="server" OnClick="Button3_Click" Text="Button" />
                     <hr />
                 </asp:Panel>
             </asp:View>
@@ -82,14 +81,46 @@
                     <br />
                 </asp:Panel>
                 <asp:Panel ID="Panel7" runat="server" Direction="LeftToRight" Height="30px">
-                    <asp:Label ID="customerIDLabel" runat="server" Text="Customer ID: "></asp:Label>
-                    &nbsp;<input id="customerIDText" type="text" />
+                    &nbsp;<asp:Label ID="customerIDLabel" runat="server" Text="Customer ID: "></asp:Label>
+                    <asp:TextBox ID="TextBox1" runat="server" OnTextChanged="TextBox1_TextChanged"></asp:TextBox>
                     </asp:Panel>
-                &nbsp;<asp:Panel ID="Panel9" runat="server">
+                &nbsp;<asp:Label ID="customerIDLabel0" runat="server" Text="Customer Email: "></asp:Label>
+                <asp:TextBox ID="TextBox2" runat="server" OnTextChanged="TextBox2_TextChanged"></asp:TextBox>
+                <asp:Panel ID="Panel9" runat="server">
                     <div>
                     </div>
                     <asp:Button ID="Button2" runat="server" BorderColor="Black" BorderStyle="Solid" BorderWidth="3px" Font-Bold="True" Font-Names="Arial" Font-Overline="False" Font-Size="X-Large" ForeColor="Black" Height="70px" Text="Generate Report" Width="210px" OnClick="Button2_Click" />
                     <hr />
+                    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:POSConnectionString %>" SelectCommand="SELECT * FROM [CUSTOMER] WHERE ((@customerID is NULL) OR ([customerID] = @customerID)) AND ((@customer_email = '') OR ([customer_email] = @customer_email))" onselected="SqlDataSource1_Selected">
+                        <SelectParameters>
+                            <asp:FormParameter FormField="TextBox1" Name="customerID" Type="Int32" />
+                            <asp:FormParameter FormField="TextBox2" Name="customer_email" />
+                        </SelectParameters>
+                    </asp:SqlDataSource>
+                    <asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#DEDFDE" BorderStyle="None" BorderWidth="1px" CellPadding="4" DataKeyNames="customerID" ForeColor="Black" GridLines="Vertical" OnSelectedIndexChanged="GridView1_SelectedIndexChanged1">
+                        <AlternatingRowStyle BackColor="White" />
+                        <Columns>
+                            <asp:BoundField DataField="customerID" HeaderText="Customer ID" InsertVisible="False" ReadOnly="True" SortExpression="customerID" />
+                            <asp:BoundField DataField="first_name" HeaderText="First Name" SortExpression="first_name" />
+                            <asp:BoundField DataField="last_name" HeaderText="Last Name" SortExpression="last_name" />
+                            <asp:BoundField DataField="customer_email" HeaderText="E-mail" SortExpression="customer_email" />
+                            <asp:BoundField DataField="phone_no" HeaderText="Phone Number" SortExpression="phone_no" />
+                            <asp:BoundField DataField="shipping_address" HeaderText="Street Address" SortExpression="shipping_address" />
+                            <asp:BoundField DataField="zipcode" HeaderText="Zip Code" SortExpression="zipcode" />
+                            <asp:BoundField DataField="city" HeaderText="City" SortExpression="city" />
+                            <asp:BoundField DataField="state" HeaderText="State" SortExpression="state" />
+                        </Columns>
+                        <FooterStyle BackColor="#CCCC99" />
+                        <HeaderStyle BackColor="#6B696B" Font-Bold="True" ForeColor="White" />
+                        <PagerStyle BackColor="#F7F7DE" ForeColor="Black" HorizontalAlign="Right" />
+                        <RowStyle BackColor="#F7F7DE" />
+                        <SelectedRowStyle BackColor="#CE5D5A" Font-Bold="True" ForeColor="White" />
+                        <SortedAscendingCellStyle BackColor="#FBFBF2" />
+                        <SortedAscendingHeaderStyle BackColor="#848384" />
+                        <SortedDescendingCellStyle BackColor="#EAEAD3" />
+                        <SortedDescendingHeaderStyle BackColor="#575357" />
+                    </asp:GridView>
+                    <asp:Label ID="Label7" runat="server"></asp:Label>
                 </asp:Panel>
             </asp:View>
             <asp:View ID="EmployeeInfo" runat="server">
