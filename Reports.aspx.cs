@@ -17,7 +17,6 @@ namespace ElectronicsPOS
             {
                 MultiView1.SetActiveView(CustomerInfo);
                 SqlDataSource SqlDataSource1 = new SqlDataSource();
-                SqlDataSource1.ID = "SqlDataSource1";
                 this.Page.Controls.Add(SqlDataSource1);
                 SqlDataSource1.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString;
             }
@@ -78,33 +77,25 @@ namespace ElectronicsPOS
 
             GridView2.DataSource = SqlDataSource1;
             GridView2.DataBind();
+            SqlDataSource1.SelectCommand = "SELECT invoiceID, date_time ,totalSales, payment_method from invoice WHERE(@customerID IS NULL OR COALESCE(cust_ID, '') = @customerID)";
+            GridView3.DataSource = SqlDataSource1;
+            GridView3.DataBind();
         }
 
         protected void SqlDataSource1_Selected(object sender, SqlDataSourceStatusEventArgs e)
         {
             if (e.AffectedRows < 1)
             {
-                Label7.Text = "No matching customer found.";
+                Label7.Text = "No results found.";
             }
         }
+        
 
-        protected void GridView1_SelectedIndexChanged1(object sender, EventArgs e)
-        {
-
-        }
-
-<<<<<<< HEAD
         string customerID;
         protected void TextBox1_TextChanged(object sender, EventArgs e) => customerID = TextBox1.Text;
 
         string customer_email;
         protected void TextBox2_TextChanged(object sender, EventArgs e) => customer_email = TextBox2.Text;
-=======
-        protected void Menu1_MenuItemClick(object sender, MenuEventArgs e)
-        {
-            int index = Int32.Parse(e.Item.Value);
-            MultiView1.ActiveViewIndex = index;
-        }
->>>>>>> 73254b76f7a6e28d3f5a1751c54015389e644fe8
+        
     }
 }

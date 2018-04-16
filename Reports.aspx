@@ -97,7 +97,7 @@
                             <asp:FormParameter FormField="TextBox2" Name="customer_email" />
                         </SelectParameters>
                     </asp:SqlDataSource>
-                    <asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#DEDFDE" BorderStyle="None" BorderWidth="1px" CellPadding="4" DataKeyNames="customerID" ForeColor="Black" GridLines="Vertical" OnSelectedIndexChanged="GridView1_SelectedIndexChanged1">
+                    <asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#DEDFDE" BorderStyle="None" BorderWidth="1px" CellPadding="4" DataKeyNames="customerID" ForeColor="Black" GridLines="Vertical">
                         <AlternatingRowStyle BackColor="White" />
                         <Columns>
                             <asp:BoundField DataField="customerID" HeaderText="Customer ID" InsertVisible="False" ReadOnly="True" SortExpression="customerID" />
@@ -109,6 +109,25 @@
                             <asp:BoundField DataField="zipcode" HeaderText="Zip Code" SortExpression="zipcode" />
                             <asp:BoundField DataField="city" HeaderText="City" SortExpression="city" />
                             <asp:BoundField DataField="state" HeaderText="State" SortExpression="state" />
+                        </Columns>
+                        <FooterStyle BackColor="#CCCC99" />
+                        <HeaderStyle BackColor="#6B696B" Font-Bold="True" ForeColor="White" />
+                        <PagerStyle BackColor="#F7F7DE" ForeColor="Black" HorizontalAlign="Right" />
+                        <RowStyle BackColor="#F7F7DE" />
+                        <SelectedRowStyle BackColor="#CE5D5A" Font-Bold="True" ForeColor="White" />
+                        <SortedAscendingCellStyle BackColor="#FBFBF2" />
+                        <SortedAscendingHeaderStyle BackColor="#848384" />
+                        <SortedDescendingCellStyle BackColor="#EAEAD3" />
+                        <SortedDescendingHeaderStyle BackColor="#575357" />
+                    </asp:GridView>
+                    <asp:GridView ID="GridView3" runat="server" BackColor="White" BorderColor="#DEDFDE" BorderStyle="None" BorderWidth="1px" CellPadding="4" ForeColor="Black" GridLines="Vertical" AutoGenerateColumns="False">
+                        <AlternatingRowStyle BackColor="White" />
+                        <Columns>
+                            <asp:BoundField DataField="invoiceID" HeaderText="Invoice ID" SortExpression="invoiceID" />
+                            <asp:BoundField DataField="date_time" HeaderText="Date & Time" SortExpression="date_time" />
+                            <asp:BoundField DataField="totalSales" HeaderText="Total Sale" SortExpression="totalSales" />
+                            <asp:BoundField DataField="payment_method" HeaderText="Payment Method" SortExpression="payment_method" />
+
                         </Columns>
                         <FooterStyle BackColor="#CCCC99" />
                         <HeaderStyle BackColor="#6B696B" Font-Bold="True" ForeColor="White" />
