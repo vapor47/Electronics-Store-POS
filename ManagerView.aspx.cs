@@ -12,7 +12,7 @@ public partial class ManagerView : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         SqlConnection con = new SqlConnection(
-           WebConfigurationManager.ConnectionStrings["PosDb"].ConnectionString);
+           WebConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString);
         con.Open();
         if (Session["user"] == null)
         {
@@ -20,10 +20,18 @@ public partial class ManagerView : System.Web.UI.Page
         }
         else
         {
-            string query = "select Fname from EMPLOYEE where employeeID = " + Session["user"].ToString();
+            string query = "select privilege from EMPLOYEE where employeeID = " + Session["user"];
             SqlCommand cmd = new SqlCommand(query, con);
-            
-            WelcomeLabel.Text = "Welcome, " + cmd.ExecuteScalar().ToString() + "."; 
+            if (Convert.ToInt32(cmd.ExecuteScalar()) == 1)
+            {
+
+                query = "select Fname from EMPLOYEE where employeeID = " + Session["user"].ToString();
+                cmd = new SqlCommand(query, con);
+
+                WelcomeLabel.Text = "Welcome, " + cmd.ExecuteScalar().ToString() + ".";
+            }
+            else
+                Response.Redirect("~/EmployeeView.aspx");
         }
     }
 
@@ -31,5 +39,27 @@ public partial class ManagerView : System.Web.UI.Page
     {
         Session.Clear();
         Response.Redirect("~/Login.aspx");
+    }
+
+
+
+    protected void CheckBtn_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("~/CheckStock.aspx");
+    }
+
+    protected void RestockBtn_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("~/Restock.aspx");
+    }
+
+    protected void newBtn_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("~/NewProduct.aspx");
+    }
+
+    protected void EditBtn_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("~/EditProduct.aspx");
     }
 }
