@@ -1,4 +1,4 @@
-﻿<%@ Page Title="LogIn" Language="C#" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="_Default" %>
+﻿<%@ Page Title="LogIn" Language="C#" AutoEventWireup="true" CodeFile="Login.aspx.cs" Inherits="_Default" %>
 
 <!DOCTYPE html>
 
@@ -15,7 +15,7 @@
             width: 39px;
         }
         .auto-style3 {
-            width: 128px;
+            width: 113px;
         }
     </style>
 </head>
@@ -31,9 +31,9 @@
             </tr>
             <tr>
                 <td class="auto-style2">
-            <asp:Label ID="Label2" runat="server" Text="Password"></asp:Label>:</td>
+            <asp:Label ID="Label2" runat="server"  Text="Password"></asp:Label>:</td>
                 <td class="auto-style3">
-            <asp:TextBox ID="txtPass" runat="server"></asp:TextBox>
+            <asp:TextBox ID="txtPass" TextMode="Password" runat="server"></asp:TextBox>
                 </td>
             </tr>
             <tr>
