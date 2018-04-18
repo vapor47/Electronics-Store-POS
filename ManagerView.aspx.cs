@@ -62,4 +62,14 @@ public partial class ManagerView : System.Web.UI.Page
     {
         Response.Redirect("~/EditProduct.aspx");
     }
+
+    protected void Button5_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("~/Allproduct.aspx");
+    }
+
+    protected void Button6_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("~/EditPrice.aspx");
+    }
 }
