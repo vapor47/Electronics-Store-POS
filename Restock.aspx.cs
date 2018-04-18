@@ -28,6 +28,8 @@ public partial class Restock : System.Web.UI.Page
             cmd = new SqlCommand(query, con);
             SupplierList.DataSource = cmd.ExecuteReader();
             SupplierList.DataBind();
+            ListItem defaultSupp = new ListItem("Select supplier", "-1");
+            SupplierList.Items.Insert(0, defaultSupp);
             con.Close();
 
         }
@@ -63,36 +65,39 @@ public partial class Restock : System.Web.UI.Page
 
     protected void Button1_Click(object sender, EventArgs e)
     {
-        
-        SqlConnection con = new SqlConnection(
-                 WebConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString);
-        con.Open();
-        int newquantity;
-        string query = "select quantity from PRODUCT where productID = " + ProductList.SelectedValue;   //get current quantity
-        SqlCommand cmd = new SqlCommand(query, con);
-        newquantity = Convert.ToInt32(quantityTxt.Text) + Convert.ToInt32(cmd.ExecuteScalar());
-        con.Close();
-        
-        con.Open();
-        query = "update PRODUCT set quantity = " + newquantity + " where productID = " + ProductList.SelectedValue;     //update quantity
-        cmd = new SqlCommand(query, con);
-        cmd.ExecuteNonQuery();
-        con.Close();
+        if (Page.IsValid)
+        {
+
+            SqlConnection con = new SqlConnection(
+                     WebConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString);
+            con.Open();
+            int newquantity;
+            string query = "select quantity from PRODUCT where productID = " + ProductList.SelectedValue;   //get current quantity
+            SqlCommand cmd = new SqlCommand(query, con);
+            newquantity = Convert.ToInt32(quantityTxt.Text) + Convert.ToInt32(cmd.ExecuteScalar());
+            con.Close();
+
+            con.Open();
+            query = "update PRODUCT set quantity = " + newquantity + " where productID = " + ProductList.SelectedValue;     //update quantity
+            cmd = new SqlCommand(query, con);
+            cmd.ExecuteNonQuery();
+            con.Close();
 
 
 
 
-        decimal stock_price = decimal.Parse(PriceTxt.Text);
-        con.Open();
-        query = "insert into Restock values ("  + ProductList.SelectedValue + ", " + SupplierList.SelectedValue 
-            + ", DATEADD (hour, -5, GETDATE()), " + Convert.ToInt32(quantityTxt.Text) + ", " + stock_price + ")" ;     //set new price
-        cmd = new SqlCommand(query, con);
-        cmd.ExecuteNonQuery();
-        con.Close();
+            decimal stock_price = decimal.Parse(PriceTxt.Text);
+            con.Open();
+            query = "insert into Restock values (" + ProductList.SelectedValue + ", " + SupplierList.SelectedValue
+                + ", DATEADD (hour, -5, GETDATE()), " + Convert.ToInt32(quantityTxt.Text) + ", " + stock_price + ")";     //set new price
+            cmd = new SqlCommand(query, con);
+            cmd.ExecuteNonQuery();
+            con.Close();
 
 
-        DisplayMessage(this, "Successful Restock");
-        //Response.Redirect("~/Login.aspx");
+            DisplayMessage(this, "Successful Restock");
+            //Response.Redirect("~/Login.aspx");
+        }
     }
 
     public static void DisplayMessage(Control page, String msg)

@@ -76,12 +76,14 @@ public partial class EditPrice : System.Web.UI.Page
 
     protected void ApplyBtn_Click(object sender, EventArgs e)
     {
-        decimal new_price = decimal.Parse(PriceTxt.Text);
-        string query;
-        SqlCommand cmd;
-        SqlConnection con = new SqlConnection(
-              WebConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString);
-        con.Open();
+        if (Page.IsValid)
+        {
+            decimal new_price = decimal.Parse(PriceTxt.Text);
+            string query;
+            SqlCommand cmd;
+            SqlConnection con = new SqlConnection(
+                  WebConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString);
+            con.Open();
 
 
             query = "insert into store_price_record values (" + ProductList.SelectedValue + ", DATEADD (hour, -5, GETDATE()), "
@@ -89,9 +91,10 @@ public partial class EditPrice : System.Web.UI.Page
             cmd = new SqlCommand(query, con);
             cmd.ExecuteNonQuery();
             con.Close();
-        
 
-        DisplayMessage(this, "New Price is set successfully.");
+
+            DisplayMessage(this, "New Price is set successfully.");
+        }
     }
 
     public static void DisplayMessage(Control page, String msg)

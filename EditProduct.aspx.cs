@@ -59,7 +59,7 @@ public partial class test : System.Web.UI.Page
         SqlCommand cmd;
         SqlConnection con = new SqlConnection(
                 WebConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString);
-        con.Open();       
+        con.Open();
 
         query = "select * from PRODUCT where productID = " + ProductList.SelectedValue;   //get current quantity
         cmd = new SqlCommand(query, con);
@@ -77,28 +77,31 @@ public partial class test : System.Web.UI.Page
 
             }
         }
-       
+
         rd.Close();
         con.Close();
     }
 
     protected void ApplyBtn_Click(object sender, EventArgs e)
     {
-        SqlConnection con = new SqlConnection(
-                WebConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString);
-        con.Open();
-        string query;
-        SqlCommand cmd;
-        
-        query = "update PRODUCT set model = '" + modelTxt.Text + "', brand = '" + brandTxt.Text + "', name = '" + nameTxt.Text
-          + "', color = '" + colorTxt.Text + "', size = '" + sizeTxt.Text + "' where productID = " + ProductList.SelectedValue; 
-        cmd = new SqlCommand(query, con);
-        cmd.ExecuteNonQuery();
-        con.Close();
+        if (Page.IsValid)
+        {
+            SqlConnection con = new SqlConnection(
+                    WebConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString);
+            con.Open();
+            string query;
+            SqlCommand cmd;
+
+            query = "update PRODUCT set model = '" + modelTxt.Text + "', brand = '" + brandTxt.Text + "', name = '" + nameTxt.Text
+              + "', color = '" + colorTxt.Text + "', size = '" + sizeTxt.Text + "' where productID = " + ProductList.SelectedValue;
+            cmd = new SqlCommand(query, con);
+            cmd.ExecuteNonQuery();
+            con.Close();
 
 
 
-        DisplayMessage(this, "New information is set successfully.");
+            DisplayMessage(this, "New information is set successfully.");
+        }
     }
 
     public static void DisplayMessage(Control page, String msg)
