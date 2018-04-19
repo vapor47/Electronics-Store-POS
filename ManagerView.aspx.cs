@@ -72,4 +72,9 @@ public partial class ManagerView : System.Web.UI.Page
     {
         Response.Redirect("~/EditPrice.aspx");
     }
+
+    protected void Button7_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("~/Reports.aspx");
+    }
 }
