@@ -40,22 +40,31 @@ namespace electronicspos.com {
         protected global::System.Web.UI.WebControls.View View1;
         
         /// <summary>
-        /// customerList control.
+        /// customerID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList customerList;
+        protected global::System.Web.UI.WebControls.TextBox customerID;
         
         /// <summary>
-        /// customerRequired control.
+        /// custIDRequired control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RangeValidator customerRequired;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator custIDRequired;
+        
+        /// <summary>
+        /// validCustID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator validCustID;
         
         /// <summary>
         /// payment control.

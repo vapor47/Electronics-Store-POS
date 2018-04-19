@@ -11,12 +11,11 @@
         <asp:MultiView ID="MultiView1" runat="server" OnActiveViewChanged="MultiView1_ActiveViewChanged">
             <asp:View ID="View1" runat="server">
                 <div>
-                    Invoice Entree Form<br />
                     <br />
                     Customer ID:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <asp:DropDownList ID="customerList" runat="server" AutoPostBack="True" DataTextField="customerID" DataValueField="customerID">
-                    </asp:DropDownList>
-                    <asp:RangeValidator ID="customerRequired" runat="server" ControlToValidate="customerList" ErrorMessage="Select a Customer" MaximumValue="9999999" MinimumValue="0"></asp:RangeValidator>
+                    <asp:TextBox ID="customerID" runat="server"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="custIDRequired" runat="server" ControlToValidate="customerID" ErrorMessage="Customer ID Required"></asp:RequiredFieldValidator>
+                    <asp:RegularExpressionValidator ID="validCustID" runat="server" ControlToValidate="customerID" ErrorMessage="Enter a Valid Customer ID" ValidationExpression="^\d+$"></asp:RegularExpressionValidator>
                     <br />
                     <br />
                     Payment Method:&nbsp;&nbsp;&nbsp;
