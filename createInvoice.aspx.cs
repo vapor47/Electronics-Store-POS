@@ -61,8 +61,7 @@ namespace electronicspos.com
             {
                 //Create Invoice
                 con.Open();
-                // query = "insert into INVOICE (cust_ID, emp_ID, totalSales, payment_method, home_delivery, date_time) values ('" + customerID.Text + "','" + Session["user"] + "',0,'" + payment.SelectedValue.ToString() + "','" + delivery.SelectedValue.ToString() + "', DATEADD (hour, -5, GETDATE()))";
-                query = "insert into INVOICE (cust_ID, emp_ID, totalSales, payment_method, home_delivery, date_time) values ('" + customerID.Text + "',1,0,'" + payment.SelectedValue.ToString() + "','" + delivery.SelectedValue.ToString() + "', DATEADD (hour, -5, GETDATE()))";
+                query = "insert into INVOICE (cust_ID, emp_ID, totalSales, payment_method, home_delivery, date_time) values ('" + customerID.Text + "','" + Session["user"] + "',0,'" + payment.SelectedValue.ToString() + "','" + delivery.SelectedValue.ToString() + "', DATEADD (hour, -5, GETDATE()))";
                 cmd = new SqlCommand(query, con);
                 cmd.ExecuteNonQuery();
                 con.Close();
