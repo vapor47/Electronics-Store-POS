@@ -24,7 +24,7 @@ namespace electronicspos.com
             WebConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString);
 
             con.Open();
-            String query = "insert into EMPLOYEE (Fname, Mname, Lname, privilege) values ('" + Fname.Text + "','" + Mname.Text + "','" + Lname.Text + "','" + privledge.SelectedValue.ToString() + "')";
+            String query = "insert into EMPLOYEE (Fname, Mname, Lname, privilege) values ('" + Fname.Text + "','" + Mname.Text + "','" + Lname.Text + "','" + privilege.SelectedValue.ToString() + "')";
             SqlCommand cmd = new SqlCommand(query, con);
 
             cmd.ExecuteNonQuery();

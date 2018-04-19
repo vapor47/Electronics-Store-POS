@@ -28,8 +28,8 @@
             <asp:RegularExpressionValidator ID="lnameAlpha" runat="server" ControlToValidate="Lname" ErrorMessage="Enter a Valid Name" ValidationExpression="^[a-zA-Z'.\s]{1,40}$"></asp:RegularExpressionValidator>
             <br />
             <br />
-            Privledge:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:DropDownList ID="privledge" runat="server">
+            Privilege:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <asp:DropDownList ID="privilege" runat="server">
                 <asp:ListItem Value="0">Employee</asp:ListItem>
                 <asp:ListItem Value="1">Manager</asp:ListItem>
             </asp:DropDownList>
