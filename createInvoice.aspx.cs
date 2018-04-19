@@ -61,7 +61,8 @@ namespace electronicspos.com
             {
                 //Create Invoice
                 con.Open();
-                query = "insert into INVOICE (cust_ID, emp_ID, totalSales, payment_method, home_delivery, date_time) values ('" + customerID.Text + "','" + Session["user"] + "',0,'" + payment.SelectedValue.ToString() + "','" + delivery.SelectedValue.ToString() + "', DATEADD (hour, -5, GETDATE()))";
+                // query = "insert into INVOICE (cust_ID, emp_ID, totalSales, payment_method, home_delivery, date_time) values ('" + customerID.Text + "','" + Session["user"] + "',0,'" + payment.SelectedValue.ToString() + "','" + delivery.SelectedValue.ToString() + "', DATEADD (hour, -5, GETDATE()))";
+                query = "insert into INVOICE (cust_ID, emp_ID, totalSales, payment_method, home_delivery, date_time) values ('" + customerID.Text + "',1,0,'" + payment.SelectedValue.ToString() + "','" + delivery.SelectedValue.ToString() + "', DATEADD (hour, -5, GETDATE()))";
                 cmd = new SqlCommand(query, con);
                 cmd.ExecuteNonQuery();
                 con.Close();
@@ -96,14 +97,14 @@ namespace electronicspos.com
 
             //Retrieve the most recent price for the product
             con.Open();
-            query = "SELECT store_price FROM STORE_PRICE_RECORD WHERE productID = " + productList.SelectedValue.ToString() + " ORDER BY start_date DESC";
+            query = "SELECT store_price FROM store_price_record WHERE productID = " + productList.SelectedValue.ToString() + " ORDER BY start_date DESC";
             cmd = new SqlCommand(query, con);
-            double price = (double)cmd.ExecuteScalar();
+            double price = Convert.ToDouble(cmd.ExecuteScalar());
             con.Close();
 
             //Update the total sales on the invoice
             con.Open();
-            query = "UPDATE INVOICE SET totalSales = totaleSales + " + price.ToString() + " * " + quantity.Text + " WHERE invoiceID = " + invoiceID.ToString();
+            query = "UPDATE INVOICE SET totalSales = totalSales + " + price.ToString() + " * " + quantity.Text + " WHERE invoiceID = " + invoiceID.ToString();
             cmd = new SqlCommand(query, con);
             cmd.ExecuteNonQuery();
             con.Close();
@@ -115,12 +116,40 @@ namespace electronicspos.com
             cmd.ExecuteNonQuery();
             con.Close();
 
-            //Create INVOICE_DETAIL entree
+            //Check if item has already been added to the InvoiceDetail
             con.Open();
-            query = "INSERT INTO INVOICE_DETAIL (Inv_ID, Pro_ID, quantity, priceSold) VALUES ('" + invoiceID.ToString() + "','" + productList.SelectedValue.ToString() + "','" + quantity.Text.ToString() + "','" + price.ToString() +"')";
+            bool isExisting = false;
+            query = "select Pro_ID from InvoiceDetail";
             cmd = new SqlCommand(query, con);
-            cmd.ExecuteNonQuery();
+            SqlDataReader rd = cmd.ExecuteReader();
+            while (rd.Read())
+            {
+                if (rd[0].ToString() == productList.SelectedValue.ToString())
+                {
+                    isExisting = true;
+                    break;
+                }
+            }
             con.Close();
+            if (isExisting)
+            {
+                //Update InvoiceDetail
+                con.Open();
+                query = "UPDATE InvoiceDetail SET quantity = quantity + " + quantity.Text + " WHERE Inv_ID = " + invoiceID.ToString() + " AND Pro_ID = " + productList.SelectedValue;
+                cmd = new SqlCommand(query, con);
+                cmd.ExecuteNonQuery();
+                con.Close();
+            }   
+            else
+            {
+                //Create InvoiceDetail entree
+                con.Open();
+                query = "INSERT INTO InvoiceDetail (Inv_ID, Pro_ID, quantity, priceSold) VALUES ('" + invoiceID.ToString() + "','" + productList.SelectedValue.ToString() + "','" + quantity.Text.ToString() + "','" + price.ToString() + "')";
+                cmd = new SqlCommand(query, con);
+                cmd.ExecuteNonQuery();
+                con.Close();
+
+            }
 
             //empty boxes to prep for new items to be added
             quantity.Text = string.Empty;
@@ -137,21 +166,21 @@ namespace electronicspos.com
 
             //Retrieve the Invoice ID we're working on
             con.Open();
-            query = "SELECT invoiceID FROM INVOICE WHERE emp_ID =" + Session["user"] + " ORDER BY invoiceID DESC";
+            query = "SELECT invoiceID FROM INVOICE WHERE emp_ID ="+Session["user"]+" ORDER BY invoiceID DESC";
             cmd = new SqlCommand(query, con);
             int invoiceID = (int)cmd.ExecuteScalar();
             con.Close();
 
             //Retrieve the most recent price for the product
             con.Open();
-            query = "SELECT store_price FROM STORE_PRICE_RECORD WHERE productID = " + productList.SelectedValue.ToString() + " ORDER BY start_date DESC";
+            query = "SELECT store_price FROM store_price_record WHERE productID = " + productList.SelectedValue.ToString() + " ORDER BY start_date DESC";
             cmd = new SqlCommand(query, con);
-            double price = (double)cmd.ExecuteScalar();
+            double price = Convert.ToDouble(cmd.ExecuteScalar());
             con.Close();
 
             //Update the total sales on the invoice
             con.Open();
-            query = "UPDATE INVOICE SET totalSales = totaleSales+" + price.ToString() + " * " + quantity.Text + " WHERE invoiceID = " + invoiceID.ToString();
+            query = "UPDATE INVOICE SET totalSales = totalSales + " + price.ToString() + " * " + quantity.Text + " WHERE invoiceID = " + invoiceID.ToString();
             cmd = new SqlCommand(query, con);
             cmd.ExecuteNonQuery();
             con.Close();
@@ -163,12 +192,40 @@ namespace electronicspos.com
             cmd.ExecuteNonQuery();
             con.Close();
 
-            //Create INVOICE_DETAIL entree
+            //Check if item has already been added to the InvoiceDetail
             con.Open();
-            query = "INSERT INTO INVOICE_DETAIL (Inv_ID, Pro_ID, quantity, priceSold) VALUES ('" + invoiceID.ToString() + "','" + productList.SelectedValue.ToString() + "','" + quantity.Text.ToString() + "','" + price.ToString() + "')";
+            bool isExisting = false;
+            query = "select Pro_ID from InvoiceDetail";
             cmd = new SqlCommand(query, con);
-            cmd.ExecuteNonQuery();
+            SqlDataReader rd = cmd.ExecuteReader();
+            while (rd.Read())
+            {
+                if (rd[0].ToString() == productList.SelectedValue.ToString())
+                {
+                    isExisting = true;
+                    break;
+                }
+            }
             con.Close();
+            if (isExisting)
+            {
+                //Update InvoiceDetail
+                con.Open();
+                query = "UPDATE InvoiceDetail SET quantity = quantity + " + quantity.Text + " WHERE Inv_ID = " + invoiceID.ToString() + " AND Pro_ID = " + productList.SelectedValue;
+                cmd = new SqlCommand(query, con);
+                cmd.ExecuteNonQuery();
+                con.Close();
+            }
+            else
+            {
+                //Create InvoiceDetail entree
+                con.Open();
+                query = "INSERT INTO InvoiceDetail (Inv_ID, Pro_ID, quantity, priceSold) VALUES ('" + invoiceID.ToString() + "','" + productList.SelectedValue.ToString() + "','" + quantity.Text.ToString() + "','" + price.ToString() + "')";
+                cmd = new SqlCommand(query, con);
+                cmd.ExecuteNonQuery();
+                con.Close();
+
+            }
 
             //refresh page since this invoice is finalized
             Response.Redirect("~/createInvoice.aspx");
