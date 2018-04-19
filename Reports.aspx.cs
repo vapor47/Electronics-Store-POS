@@ -35,16 +35,17 @@ namespace ElectronicsPOS
         protected void Button1_Click(object sender, EventArgs e)
         {
             startDate = TextBox6.Text;
-            endDate = TextBox7.Text;
+            endDate = TextBox7.Text + " 23:59:59:999";
 
             SqlDataSource1.SelectParameters.Clear();
             SqlDataSource1.SelectParameters.Add("startDate", startDate);
             SqlDataSource1.SelectParameters.Add("endDate", endDate);
-            //SqlDataSource1.SelectParameters.Add("productName", productName);
-            SqlDataSource1.SelectCommand = "SELECT * from PRODUCT WHERE(@startDate IS NULL OR COALESCE(date_time, '') >= like '%' + @startDate + '%')" +
-                "AND(@endDate IS NULL OR COALESCE(date_time, '') < like '%' + @endDate + '%')";
+            SqlDataSource1.SelectCommand = "SELECT * from INVOICE WHERE date_time BETWEEN CONVERT(datetime, @startDate) AND CONVERT(datetime, @endDate)";
+            //SqlDataSource1.SelectCommand = "SELECT * from INVOICE WHERE(@startDate IS NULL OR COALESCE(date_time, '') like '%' + @startDate + '%')" +
+            //    "AND(@endDate IS NULL OR COALESCE(date_time, '') like '%' + @endDate + '%')";
                // "AND(@productName IS NULL OR COALESCE(Name, '') like '%' + @productName + '%')";
             SqlDataSource1.CancelSelectOnNullParameter = false;
+            Label20.Text = startDate;
 
             GridView4.DataSource = SqlDataSource1;
             GridView4.DataBind();
@@ -75,6 +76,7 @@ namespace ElectronicsPOS
             if (e.AffectedRows < 1)
             {
                 Label7.Text = "No results found.";
+                Label20.Text = "No results found.";
             }
         }
         
@@ -137,7 +139,7 @@ namespace ElectronicsPOS
         {
             endDate = TextBox7.Text;
         }
-
+        
         protected void Button4_Click(object sender, EventArgs e)
         {
             employeeID= TextBox8.Text;
