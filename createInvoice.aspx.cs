@@ -90,7 +90,7 @@ namespace electronicspos.com
 
             //Retrieve the Invoice ID we're working on
             con.Open();
-            query = "SELECT invoiceID FROM INVOICE WHERE emp_ID ="+Session["user"]+" ORDER BY invoiceID DESC";
+            query = "SELECT invoiceID FROM INVOICE WHERE emp_ID = "+Session["user"]+" ORDER BY invoiceID DESC";
             cmd = new SqlCommand(query, con);
             int invoiceID = (int)cmd.ExecuteScalar();
             con.Close();
@@ -166,7 +166,7 @@ namespace electronicspos.com
 
             //Retrieve the Invoice ID we're working on
             con.Open();
-            query = "SELECT invoiceID FROM INVOICE WHERE emp_ID ="+Session["user"]+" ORDER BY invoiceID DESC";
+            query = "SELECT invoiceID FROM INVOICE WHERE emp_ID = "+Session["user"]+" ORDER BY invoiceID DESC";
             cmd = new SqlCommand(query, con);
             int invoiceID = (int)cmd.ExecuteScalar();
             con.Close();
