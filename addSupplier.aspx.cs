@@ -22,7 +22,7 @@ namespace electronicspos.com
             WebConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString);
 
             con.Open();
-            String query = "INSERT INTO SUPPLIER (company_name, company_type) VALUES (" + name.Text + "," + compType.Text + ")";
+            String query = "insert into SUPPLIER (company_name, company_type) values ('" + name.Text + "','" + compType.Text + "')";
             SqlCommand cmd = new SqlCommand(query,con);
             cmd.ExecuteNonQuery();
             con.Close();

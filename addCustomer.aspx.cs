@@ -25,11 +25,11 @@ namespace electronicspos.com
             String query = "";
             if (state.SelectedValue.ToString() == "-1")
             {
-                query = "INSERT INTO CUSTOMER (first_name, last_name, shipping_address, city, zipcode, customer_email, phone_no) VALUES (" + Fname.Text + "," + Lname.Text + "," + street.Text + "," + city.Text + "," +zip.Text + "," + email.Text + "," + phone.Text + ")";
+                query = "insert into CUSTOMER (first_name, last_name, shipping_address, city, zipcode, customer_email, phone_no) values ('" + Fname.Text + "','" + Lname.Text + "','" + street.Text + "','" + city.Text + "','" + zip.Text + "','" + email.Text + "','" + phone.Text + "')";
             }
             else
             { 
-                query = "INSERT INTO CUSTOMER (first_name, last_name, shipping_address, city, state, zipcode, customer_email, phone_no) VALUES (" + Fname.Text + "," + Lname.Text + "," + street.Text + "," + city.Text + "," + zip.Text + "," + state.SelectedValue.ToString() + "," + email.Text + "," + phone.Text + ")";
+                query = "insert into CUSTOMER (first_name, last_name, shipping_address, city, zipcode, state, customer_email, phone_no) values ('" + Fname.Text + "','" + Lname.Text + "','" + street.Text + "','" + city.Text + "','" + zip.Text + "','" + state.SelectedValue.ToString() + "','" + email.Text + "','" + phone.Text + "')";
             }
             SqlCommand cmd = new SqlCommand(query, con);
             cmd.ExecuteNonQuery();
