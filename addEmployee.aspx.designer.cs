@@ -31,6 +31,24 @@ namespace electronicspos.com {
         protected global::System.Web.UI.WebControls.TextBox Fname;
         
         /// <summary>
+        /// fnameRequired control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator fnameRequired;
+        
+        /// <summary>
+        /// fnameAlpha control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator fnameAlpha;
+        
+        /// <summary>
         /// Mname control.
         /// </summary>
         /// <remarks>
@@ -38,6 +56,15 @@ namespace electronicspos.com {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox Mname;
+        
+        /// <summary>
+        /// mnameAlpha control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator mnameAlpha;
         
         /// <summary>
         /// Lname control.
@@ -49,6 +76,24 @@ namespace electronicspos.com {
         protected global::System.Web.UI.WebControls.TextBox Lname;
         
         /// <summary>
+        /// lnameRequired control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator lnameRequired;
+        
+        /// <summary>
+        /// lnameAlpha control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator lnameAlpha;
+        
+        /// <summary>
         /// privledge control.
         /// </summary>
         /// <remarks>
@@ -58,21 +103,12 @@ namespace electronicspos.com {
         protected global::System.Web.UI.WebControls.DropDownList privledge;
         
         /// <summary>
-        /// Button1 control.
+        /// submitEmployee control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
-        
-        /// <summary>
-        /// Button2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button2;
+        protected global::System.Web.UI.WebControls.Button submitEmployee;
     }
 }

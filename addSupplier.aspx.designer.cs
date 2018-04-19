@@ -31,30 +31,39 @@ namespace electronicspos.com {
         protected global::System.Web.UI.WebControls.TextBox name;
         
         /// <summary>
-        /// companyType control.
+        /// nameRequired control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList companyType;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator nameRequired;
         
         /// <summary>
-        /// Button1 control.
+        /// compType control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
+        protected global::System.Web.UI.WebControls.TextBox compType;
         
         /// <summary>
-        /// Button2 control.
+        /// typeRequired control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button2;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator typeRequired;
+        
+        /// <summary>
+        /// submitSupplier control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button submitSupplier;
     }
 }

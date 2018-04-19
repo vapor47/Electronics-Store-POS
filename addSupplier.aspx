@@ -13,21 +13,16 @@
             <br />
             Company Name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:TextBox ID="name" runat="server"></asp:TextBox>
+            <asp:RequiredFieldValidator ID="nameRequired" runat="server" ControlToValidate="name" ErrorMessage="Company Name is Required"></asp:RequiredFieldValidator>
             <br />
             Company Type:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:DropDownList ID="companyType" runat="server">
-                <asp:ListItem>Computers</asp:ListItem>
-                <asp:ListItem>CELL PHONES</asp:ListItem>
-                <asp:ListItem>TV &amp; HOME THEATER</asp:ListItem>
-                <asp:ListItem>PHOTOGRAPHY</asp:ListItem>
-                <asp:ListItem>APPLIANCES</asp:ListItem>
-            </asp:DropDownList>
+            <asp:TextBox ID="compType" runat="server"></asp:TextBox>
+            <asp:RequiredFieldValidator ID="typeRequired" runat="server" ControlToValidate="compType" ErrorMessage="Company Type is Required"></asp:RequiredFieldValidator>
         </div>
         <p>
-            <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Add Supplier" />
+            <asp:Button ID="submitSupplier" runat="server" OnClick="submitSupplier_Click" Text="Add Supplier" />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="Return to Home Page" />
-        </p>
+            </p>
     </form>
 </body>
 </html>

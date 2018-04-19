@@ -14,16 +14,24 @@
             <br />
             First Name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:TextBox ID="Fname" runat="server"></asp:TextBox>
+            <asp:RequiredFieldValidator ID="fnameRequired" runat="server" ControlToValidate="Fname" ErrorMessage="First Name is Required"></asp:RequiredFieldValidator>
+            &nbsp;&nbsp;
+            <asp:RegularExpressionValidator ID="fnameAlpha" runat="server" ControlToValidate="Fname" ErrorMessage="Enter a Valid Name" ValidationExpression="^[a-zA-Z'.\s]{1,40}$"></asp:RegularExpressionValidator>
             <br />
             Last Name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:TextBox ID="Lname" runat="server"></asp:TextBox>
+            <asp:RequiredFieldValidator ID="lnameRequired" runat="server" ControlToValidate="Lname" ErrorMessage="Last Name is Required"></asp:RequiredFieldValidator>
+            &nbsp;&nbsp;
+            <asp:RegularExpressionValidator ID="lnameAlpha" runat="server" ControlToValidate="Lname" ErrorMessage="Last Name is Required" ValidationExpression="^[a-zA-Z'.\s]{1,40}$"></asp:RegularExpressionValidator>
             <br />
             <br />
             Email:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:TextBox ID="email" runat="server"></asp:TextBox>
+            <asp:RequiredFieldValidator ID="emailRequired" runat="server" ControlToValidate="email" ErrorMessage="Email is Required"></asp:RequiredFieldValidator>
             <br />
             Phone Number:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:TextBox ID="phone" runat="server"></asp:TextBox>
+            <asp:RegularExpressionValidator ID="phoneNum" runat="server" ControlToValidate="phone" ErrorMessage="Enter a Valid Phone Number" ValidationExpression="^[0-9]{10}$"></asp:RegularExpressionValidator>
             <br />
             <br />
             Street Address:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -31,8 +39,10 @@
             <br />
             City:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:TextBox ID="city" runat="server" style="margin-top: 0px"></asp:TextBox>
+            <asp:RegularExpressionValidator ID="cityAlpha" runat="server" ControlToValidate="city" ErrorMessage="Enter a Valid City Name" ValidationExpression="^[a-zA-Z'.\s]{1,40}$"></asp:RegularExpressionValidator>
             <br />
             State:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:DropDownList ID="state" runat="server">
+                 <asp:ListItem Value="-1">Select State</asp:ListItem>
                  <asp:ListItem Value="Alabama">AL</asp:ListItem>
             <asp:ListItem Value="Alaska">AK</asp:ListItem>
             <asp:ListItem Value="Arizona">AZ</asp:ListItem>
@@ -87,12 +97,11 @@
             <br />
             Zip Code:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:TextBox ID="zip" runat="server"></asp:TextBox>
+            <asp:RegularExpressionValidator ID="zipNum" runat="server" ControlToValidate="zip" ErrorMessage="Enter a Valid Zip Code" ValidationExpression="^[0-9]{5}$"></asp:RegularExpressionValidator>
             <br />
             <br />
         </div>
-        <asp:Button ID="Button1" runat="server" Text="Add Customer" OnClick="Button1_Click" />
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="Return to Home Page" />
+        <asp:Button ID="submitCustomer" runat="server" Text="Add Customer" OnClick="submitCustomer_Click" />
     </form>
 </body>
 </html>

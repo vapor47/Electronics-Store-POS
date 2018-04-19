@@ -31,6 +31,24 @@ namespace electronicspos.com {
         protected global::System.Web.UI.WebControls.TextBox Fname;
         
         /// <summary>
+        /// fnameRequired control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator fnameRequired;
+        
+        /// <summary>
+        /// fnameAlpha control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator fnameAlpha;
+        
+        /// <summary>
         /// Lname control.
         /// </summary>
         /// <remarks>
@@ -38,6 +56,24 @@ namespace electronicspos.com {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox Lname;
+        
+        /// <summary>
+        /// lnameRequired control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator lnameRequired;
+        
+        /// <summary>
+        /// lnameAlpha control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator lnameAlpha;
         
         /// <summary>
         /// email control.
@@ -49,6 +85,15 @@ namespace electronicspos.com {
         protected global::System.Web.UI.WebControls.TextBox email;
         
         /// <summary>
+        /// emailRequired control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator emailRequired;
+        
+        /// <summary>
         /// phone control.
         /// </summary>
         /// <remarks>
@@ -56,6 +101,15 @@ namespace electronicspos.com {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox phone;
+        
+        /// <summary>
+        /// phoneNum control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator phoneNum;
         
         /// <summary>
         /// street control.
@@ -76,6 +130,15 @@ namespace electronicspos.com {
         protected global::System.Web.UI.WebControls.TextBox city;
         
         /// <summary>
+        /// cityAlpha control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator cityAlpha;
+        
+        /// <summary>
         /// state control.
         /// </summary>
         /// <remarks>
@@ -94,21 +157,21 @@ namespace electronicspos.com {
         protected global::System.Web.UI.WebControls.TextBox zip;
         
         /// <summary>
-        /// Button1 control.
+        /// zipNum control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator zipNum;
         
         /// <summary>
-        /// Button2 control.
+        /// submitCustomer control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button2;
+        protected global::System.Web.UI.WebControls.Button submitCustomer;
     }
 }
