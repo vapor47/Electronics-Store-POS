@@ -17,14 +17,12 @@ namespace POS_WEB_APP.Controllers
 
         public IActionResult Create_Transaction()
         {
-            ViewData["Message"] = "Your application description page.";
 
             return View();
         }
 
         public IActionResult View_Reports()
         {
-            ViewData["Message"] = "Your contact page.";
 
             return View();
         }
@@ -37,6 +35,16 @@ namespace POS_WEB_APP.Controllers
 
         public IActionResult Customer_Lookup()
 
+        {
+            return View();
+        }
+
+        public IActionResult Vendor_Lookup()
+        {
+            return View();
+        }
+
+        public IActionResult Product_Lookup()
         {
             return View();
         }
