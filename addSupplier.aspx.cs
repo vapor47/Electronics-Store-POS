@@ -13,7 +13,10 @@ namespace electronicspos.com
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+            {
+                MultiView1.SetActiveView(EntreeForm);
+            }
         }
 
         protected void submitSupplier_Click(object sender, EventArgs e)
@@ -21,15 +24,23 @@ namespace electronicspos.com
             SqlConnection con = new SqlConnection(
             WebConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString);
 
+            //add Supplier
             con.Open();
             String query = "insert into SUPPLIER (company_name, company_type) values ('" + name.Text + "','" + compType.Text + "')";
             SqlCommand cmd = new SqlCommand(query,con);
             cmd.ExecuteNonQuery();
             con.Close();
 
-            //direct to addSupplier page
-            Response.Redirect("~/addSupplier.aspx");
+            //set labels
+            labelName.Text = name.Text;
+            labelType.Text = compType.Text;
+
+            MultiView1.SetActiveView(Summary);
         }
 
+        protected void anotherSupplier_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/addSupplier.aspx");
+        }
     }
 }

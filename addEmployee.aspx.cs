@@ -14,7 +14,10 @@ namespace electronicspos.com
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+            if (!IsPostBack)
+            {
+                MultiView1.SetActiveView(EntreeForm);
+            }
 
         }
 
@@ -23,16 +26,25 @@ namespace electronicspos.com
             SqlConnection con = new SqlConnection(
             WebConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString);
 
+            //add employee
             con.Open();
             String query = "insert into EMPLOYEE (Fname, Mname, Lname, privilege) values ('" + Fname.Text + "','" + Mname.Text + "','" + Lname.Text + "','" + privilege.SelectedValue.ToString() + "')";
             SqlCommand cmd = new SqlCommand(query, con);
-
             cmd.ExecuteNonQuery();
             con.Close();
 
-            //return to addEmployee
-            Response.Redirect("~/addEmployee.aspx");
+            //set labels
+            labelFname.Text = Fname.Text;
+            labelMname.Text = Mname.Text;
+            labelLname.Text = Lname.Text;
+            labelPrivilege.Text = privilege.SelectedItem.Text;
+
+            MultiView1.SetActiveView(Summary);
         }
 
+        protected void anotherEmployee_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/addEmployee.aspx");
+        }
     }
 }

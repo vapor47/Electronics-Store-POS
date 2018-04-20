@@ -5,11 +5,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
+    <style type="text/css">
+        .auto-style1 {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
     <form id="form1" runat="server">
         <asp:MultiView ID="MultiView1" runat="server" OnActiveViewChanged="MultiView1_ActiveViewChanged">
-            <asp:View ID="View1" runat="server">
+            <asp:View ID="Create" runat="server">
                 <div>
                     <br />
                     Customer ID:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -38,7 +43,7 @@
                     <asp:Button ID="startInvoice" runat="server" OnClick="startInvoice_Click" Text="Create Invoice" />
                 </p>
             </asp:View>
-            <asp:View ID="View2" runat="server">
+            <asp:View ID="AddItem" runat="server">
                 <div>
                     Add Product to Invoice<br />
                     <br />
@@ -59,6 +64,36 @@
                 <asp:Button ID="anotherItem" runat="server" OnClick="anotherItem_Click" Text="Add Another Item" />
                 &nbsp;&nbsp;&nbsp;
                 <asp:Button ID="finalize" runat="server" OnClick="finalize_Click" Text="Finalize Invoice" />
+            </asp:View>
+            <asp:View ID="Summary" runat="server">A new invoice has been successfully created!<br />
+                <br />
+                Invoice ID:
+                <asp:Label ID="labelInvoice" runat="server"></asp:Label>
+                <br />
+                Employee ID:
+                <asp:Label ID="labelEmployee" runat="server"></asp:Label>
+                <br />
+                Customer ID:
+                <asp:Label ID="labelCustomer" runat="server"></asp:Label>
+                <br />
+                <br />
+                Paid By:
+                <asp:Label ID="labelPayment" runat="server"></asp:Label>
+                <br />
+                Shipping Address:
+                <asp:Label ID="labelAddress" runat="server"></asp:Label>
+                <br />
+                <br />
+                <span class="auto-style1">Item List:
+                <asp:Label ID="labelList" runat="server"></asp:Label>
+                </span>
+                <br />
+                <br />
+                Total Sales:
+                <asp:Label ID="labelTotal" runat="server"></asp:Label>
+                <br />
+                <br />
+                <asp:Button ID="newInvoice" runat="server" OnClick="newInvoice_Click" Text="Create New Invoice" />
             </asp:View>
         </asp:MultiView>
     </form>

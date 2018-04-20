@@ -17,7 +17,7 @@ namespace electronicspos.com
             {
                 string query;
                 SqlCommand cmd;
-                MultiView1.SetActiveView(View1);
+                MultiView1.SetActiveView(Create);
                 SqlConnection con = new SqlConnection(
                       WebConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString);
 
@@ -62,16 +62,38 @@ namespace electronicspos.com
                 //Create Invoice
                 con.Open();
                 query = "insert into INVOICE (cust_ID, emp_ID, totalSales, payment_method, home_delivery, date_time) values ('" + customerID.Text + "','" + Session["user"] + "',0,'" + payment.SelectedValue.ToString() + "','" + delivery.SelectedValue.ToString() + "', DATEADD (hour, -5, GETDATE()))";
+                //query = "insert into INVOICE (cust_ID, emp_ID, totalSales, payment_method, home_delivery, date_time) values ('" + customerID.Text + "',1,0,'" + payment.SelectedValue.ToString() + "','" + delivery.SelectedValue.ToString() + "', DATEADD (hour, -5, GETDATE()))"; //local testing
                 cmd = new SqlCommand(query, con);
                 cmd.ExecuteNonQuery();
                 con.Close();
 
-                MultiView1.SetActiveView(View2);
+                //set labels
+                labelEmployee.Text = Session["user"].ToString();
+                //labelEmployee.Text = "1"; //local testing
+                labelCustomer.Text = customerID.Text;
+                labelPayment.Text = payment.SelectedValue;
+                
+                /*Need to first confirm if customer has shipping info
+                if (delivery.SelectedValue == "1") 
+                {
+                    String address;
+                    con.Open();
+                    query = "select shipping_address, city, state, zipcode from CUSTOMER where customerID = " + customerID.Text;
+                    cmd = new SqlCommand(query, con);
+                    rd = cmd.ExecuteReader();
+                    address = rd[0] + ", " + rd[1] + ", " + rd[2] + " " + rd[3];
+                    labelAddress.Text = address;
+                    con.Close();
+                }
+                */
+                
+
+                MultiView1.SetActiveView(AddItem);
             }
 
             else
             {
-                Response.Write("INVALID! ENTERED CUSTOMER ID DOES NOT EXIST!");
+                Response.Write("INVALID! THE ENTERED CUSTOMER ID DOES NOT EXIST!");
             }
         }
 
@@ -90,6 +112,7 @@ namespace electronicspos.com
             //Retrieve the Invoice ID we're working on
             con.Open();
             query = "SELECT invoiceID FROM INVOICE WHERE emp_ID = "+Session["user"]+" ORDER BY invoiceID DESC";
+            //query = "SELECT invoiceID FROM INVOICE WHERE emp_ID = 1 ORDER BY invoiceID DESC"; //local testing
             cmd = new SqlCommand(query, con);
             int invoiceID = (int)cmd.ExecuteScalar();
             con.Close();
@@ -166,6 +189,7 @@ namespace electronicspos.com
             //Retrieve the Invoice ID we're working on
             con.Open();
             query = "SELECT invoiceID FROM INVOICE WHERE emp_ID = "+Session["user"]+" ORDER BY invoiceID DESC";
+            //query = "SELECT invoiceID FROM INVOICE WHERE emp_ID = 1 ORDER BY invoiceID DESC"; //local testing
             cmd = new SqlCommand(query, con);
             int invoiceID = (int)cmd.ExecuteScalar();
             con.Close();
@@ -226,11 +250,35 @@ namespace electronicspos.com
 
             }
 
+            //set labelTotal
+            con.Open();
+            query = "select totalSales from INVOICE where invoiceID = " + invoiceID.ToString();
+            cmd = new SqlCommand(query, con);
+            String total = Convert.ToString(cmd.ExecuteScalar());
+            labelTotal.Text = "$"+total;
+            con.Close();
+
+            //set labelList
+            String salesList = "";
+            con.Open();
+            query = "select I.quantity, P.name, I.priceSold from InvoiceDetail as I, PRODUCT as P where I.Inv_ID = " + invoiceID.ToString() + " and I.Pro_ID = P.productID";
+            cmd = new SqlCommand(query, con);
+            rd = cmd.ExecuteReader();
+            while (rd.Read())
+            {
+                salesList += rd[0].ToString() + "x " + rd[1].ToString() + " $" + Convert.ToDouble(rd[2]) * Convert.ToDouble(rd[0]) + "<br />";
+            }
+            labelList.Text = salesList;
+
             //refresh page since this invoice is finalized
-            Response.Redirect("~/createInvoice.aspx");
+            MultiView1.SetActiveView(Summary);
             
         }
 
+        protected void newInvoice_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/createInvoice.aspx");
+        }
 
     }
 }

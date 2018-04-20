@@ -13,7 +13,10 @@ namespace electronicspos.com
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+            {
+                MultiView1.SetActiveView(EntreeForm);
+            }
         }
 
         protected void submitCustomer_Click(object sender, EventArgs e)
@@ -22,6 +25,7 @@ namespace electronicspos.com
             WebConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString);
             con.Open();
 
+            //add entree
             String query = "";
             if (state.SelectedValue.ToString() == "-1")
             {
@@ -35,9 +39,32 @@ namespace electronicspos.com
             cmd.ExecuteNonQuery();
             con.Close();
 
+            /* When I test this it claims the names I entered aren't in the database so it doesn't return anything.
+            //retrieve Customer ID
+            con.Open();
+            query = "select customerID from CUSTOMER where first_name = " + Fname.Text + " and last_name = " + Lname.Text + " order by customerID desc";
+            cmd = new SqlCommand(query, con);
+            String customerID = cmd.ExecuteScalar().ToString();
+            con.Close();*/
+
+            //set labels
+            //labelID.Text = customerID;
+            labelFname.Text = Fname.Text;
+            labelLname.Text = Lname.Text;
+            labelEmail.Text = email.Text;
+            labelPhone.Text = phone.Text;
+            labelStreet.Text = street.Text;
+            labelCity.Text = city.Text;
+            labelState.Text = state.SelectedValue;
+            labelZip.Text = zip.Text;
+
             //return to addCustomer
-            Response.Redirect("~/addCustomer.aspx");
+            MultiView1.SetActiveView(Summary);
         }
 
+        protected void anotherCustomer_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/addCustomer.aspx");
+        }
     }
 }
