@@ -1,18 +1,47 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="EmployeeView.aspx.cs" Inherits="EmployeeView" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/pos.master" AutoEventWireup="true" CodeFile="EmployeeView.aspx.cs" Inherits="EmployeeView" %>
 
 
-<!DOCTYPE html>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="Main" Runat="Server">
+    <div>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title></title>
-</head>
-<body>
-    <form id="form1" runat="server">
-        <div>
             <asp:Label ID="WelcomeLabel" runat="server" Text=""></asp:Label>
             <asp:Button ID="LogoutBtn" runat="server" Text="Logout" OnClick="LogoutBtn_Click" />
+
+            <br />
+            <table class="auto-style1">
+                <tr>
+                    <td class="auto-style2">
+                        <asp:Button ID="CheckBtn" runat="server" Text="Check Price/Stock" OnClick="CheckBtn_Click" />
+                    </td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="auto-style2">
+                        <asp:Button ID="Button2" runat="server" Text="Button" />
+                    </td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="auto-style2">
+                        <asp:Button ID="Button3" runat="server" Text="Button" />
+                    </td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="auto-style2">
+                        <asp:Button ID="Button4" runat="server" Text="Button" />
+                    </td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="auto-style2">&nbsp;</td>
+                    <td>&nbsp;</td>
+                </tr>
+            </table>
+
         </div>
-    </form>
-</body>
-</html>
+</asp:Content>
+
+

@@ -12,7 +12,7 @@ public partial class EmployeeView : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         SqlConnection con = new SqlConnection(
-           WebConfigurationManager.ConnectionStrings["PosDb"].ConnectionString);
+           WebConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString);
         con.Open();
         if (Session["user"] == null)
         {
@@ -31,5 +31,10 @@ public partial class EmployeeView : System.Web.UI.Page
     {
         Session.Clear();
         Response.Redirect("~/Login.aspx");
+    }
+
+    protected void CheckBtn_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("~/CheckStock.aspx");
     }
 }

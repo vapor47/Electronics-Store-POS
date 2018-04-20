@@ -1,22 +1,10 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Restock.aspx.cs" Inherits="Restock" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/pos.master" AutoEventWireup="true" CodeFile="Restock.aspx.cs" Inherits="Restock" %>
 
-<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title></title>
-    <style type="text/css">
-        .auto-style1 {
-            width: 100%;
-        }
-        .auto-style2 {
-            height: 32px;
-        }
-    </style>
-</head>
-<body>
-    <form id="form1" runat="server">
-        <div>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="Main" Runat="Server">
+     <div>
 
             <table class="auto-style1">
                 <tr>
@@ -76,7 +64,5 @@
             </br>
             </br>
         </div>
-        
-    </form>
-</body>
-</html>
+</asp:Content>
+

@@ -93,13 +93,9 @@ public partial class EditPrice : System.Web.UI.Page
             con.Close();
 
 
-            DisplayMessage(this, "New Price is set successfully.");
+            Response.Write("<script>  alert('New price has been set successfully');location.href=location.href;</script>");
         }
     }
 
-    public static void DisplayMessage(Control page, String msg)
-    {
-        string myScript = String.Format("alert('{0}')", msg);
-        ScriptManager.RegisterStartupScript(page, page.GetType(), "MyScript", myScript, true);
-    }
+
 }

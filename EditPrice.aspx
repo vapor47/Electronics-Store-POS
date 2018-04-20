@@ -1,41 +1,10 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="EditPrice.aspx.cs" Inherits="EditPrice" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/pos.master" AutoEventWireup="true"  CodeFile="EditPrice.aspx.cs" Inherits="EditPrice" %>
 
 
-
-<!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title></title>
-    <style type="text/css">
-        .auto-style1 {
-            width: 100%;
-        }
-        .auto-style2 {
-            width: 282px;
-        }
-        .auto-style3 {
-            width: 282px;
-            height: 23px;
-        }
-        .auto-style4 {
-            height: 23px;
-        }
-        .auto-style5 {
-            width: 282px;
-            height: 26px;
-        }
-        .auto-style6 {
-            height: 26px;
-        }
-        .auto-style7 {
-            margin-left: 0px;
-        }
-    </style>
-</head>
-<body>
-    <form id="form1" runat="server">
-        <div>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="Main" Runat="Server">
+     <div>
             <table class="auto-style1">
                 <tr>
                     <td class="auto-style2">Department:</td>
@@ -68,7 +37,7 @@
                     <td class="auto-style6">
                         $<asp:TextBox ID="PriceTxt" runat="server"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="PriceTxt" ErrorMessage="Required Field"></asp:RequiredFieldValidator>
-                        <asp:RangeValidator ID="RangeValidator3" runat="server" ControlToValidate="PriceTxt" ErrorMessage="Price has to be positive." MinimumValue="0" MaximumValue="20000" Type="Double"></asp:RangeValidator>
+                        <asp:RangeValidator ID="RangeValidator3" runat="server" ControlToValidate="PriceTxt" ErrorMessage="Price has to be positive number." MinimumValue="0" MaximumValue="20000" Type="Double"></asp:RangeValidator>
                     </td>
                 </tr>
                 <tr>
@@ -79,6 +48,5 @@
                 </tr>
             </table>
         </div>
-    </form>
-</body>
-</html>
+</asp:Content>
+

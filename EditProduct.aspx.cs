@@ -100,13 +100,9 @@ public partial class test : System.Web.UI.Page
 
 
 
-            DisplayMessage(this, "New information is set successfully.");
+            Response.Write("<script>  alert('New information has been stored successfully');location.href=location.href;</script>");
         }
     }
 
-    public static void DisplayMessage(Control page, String msg)
-    {
-        string myScript = String.Format("alert('{0}')", msg);
-        ScriptManager.RegisterStartupScript(page, page.GetType(), "MyScript", myScript, true);
-    }
+   
 }

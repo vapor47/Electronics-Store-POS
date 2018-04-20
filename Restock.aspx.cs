@@ -95,14 +95,10 @@ public partial class Restock : System.Web.UI.Page
             con.Close();
 
 
-            DisplayMessage(this, "Successful Restock");
-            //Response.Redirect("~/Login.aspx");
+            Response.Write("<script>  alert('Successfully restock');location.href=location.href;</script>");
+            
         }
     }
 
-    public static void DisplayMessage(Control page, String msg)
-    {
-        string myScript = String.Format("alert('{0}')", msg);
-        ScriptManager.RegisterStartupScript(page, page.GetType(), "MyScript", myScript, true);
-    }
+  
 }
