@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -17,7 +17,9 @@ public partial class _Default : System.Web.UI.Page
 
     protected void LoginBtn_Click(object sender, EventArgs e)
     {
-        SqlConnection con = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString);
+        
+        SqlConnection con = new SqlConnection(
+           WebConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString);
         con.Open();
 
         if (txtID.Text.All(char.IsDigit))   

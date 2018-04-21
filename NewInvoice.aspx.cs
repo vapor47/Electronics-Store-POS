@@ -21,6 +21,7 @@ public partial class NewInvoice : System.Web.UI.Page
     {
         if (!IsPostBack)
         {
+            TableRows.Clear();
             SqlConnection con = new SqlConnection(
                   WebConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString);
             con.Open();

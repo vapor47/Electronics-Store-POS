@@ -11,6 +11,10 @@ public partial class CheckStock : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (Session["user"] == null)
+        {
+            Response.Redirect("~/Login.aspx");
+        }
         if (!IsPostBack)
         {
             SqlConnection con = new SqlConnection(

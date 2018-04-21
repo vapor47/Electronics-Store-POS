@@ -12,13 +12,28 @@ public partial class EditPrice : System.Web.UI.Page
     
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (Session["user"] == null)
+        {
+            Response.Redirect("~/Login.aspx");
+        }
+        SqlConnection con = new SqlConnection(
+          WebConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString);
+        con.Open();
+        string query = "select privilege from EMPLOYEE where employeeID = " + Session["user"];
+        SqlCommand cmd = new SqlCommand(query, con);
+        if (Convert.ToInt32(cmd.ExecuteScalar()) == 0)
+        {
+            Response.Redirect("~/Login.aspx");
+        }
+        con.Close();
+
         if (!IsPostBack)
         {
-            SqlConnection con = new SqlConnection(
+            con = new SqlConnection(
                   WebConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString);
             con.Open();
-            string query = "select Dept_number, Dept_name  from DEPARTMENT";
-            SqlCommand cmd = new SqlCommand(query, con);
+            query = "select Dept_number, Dept_name  from DEPARTMENT";
+            cmd = new SqlCommand(query, con);
             DepartmentList.DataSource = cmd.ExecuteReader();
             DepartmentList.DataBind();
             ListItem defaultDept = new ListItem("Select department", "-1");
