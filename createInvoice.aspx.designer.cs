@@ -175,6 +175,24 @@ namespace electronicspos.com {
         protected global::System.Web.UI.WebControls.Button finalize;
         
         /// <summary>
+        /// SoldSoFar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox SoldSoFar;
+        
+        /// <summary>
+        /// SalesSoFar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label SalesSoFar;
+        
+        /// <summary>
         /// Summary control.
         /// </summary>
         /// <remarks>

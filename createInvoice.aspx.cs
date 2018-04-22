@@ -211,7 +211,16 @@ namespace electronicspos.com
                 }
 
                 //update salesList
-                listSales.Text += "$" + string.Format("{0:0.00}", Convert.ToDouble(quantity.Text) * price)+ " " + productList.SelectedItem.Text + " x" + quantity.Text;
+                SoldSoFar.Text += "$" + string.Format("{0:0.00}", Convert.ToDouble(quantity.Text) * price) + " " + productList.SelectedItem.Text + " x" + quantity.Text + Environment.NewLine;
+                listSales.Text += "$" + string.Format("{0:0.00}", Convert.ToDouble(quantity.Text) * price)+ " " + productList.SelectedItem.Text + " x" + quantity.Text +Environment.NewLine;
+
+                //set SalesSoFar
+                con.Open();
+                query = "select totalSales from INVOICE where invoiceID = " + invoiceID.ToString();
+                cmd = new SqlCommand(query, con);
+                double total = Convert.ToDouble(cmd.ExecuteScalar());
+                SalesSoFar.Text = "$" + string.Format("{0:0.00}", total);
+                con.Close();
 
                 //empty boxes to prep for new items to be added
                 quantity.Text = string.Empty;
@@ -304,7 +313,7 @@ namespace electronicspos.com
                 }
 
                 //update salesList
-                listSales.Text += "$" + string.Format("{0:0.00}", Convert.ToDouble(quantity.Text) * price) + " " + productList.SelectedItem.Text + " x" + quantity.Text + Environment.NewLine;
+                listSales.Text += "$" + string.Format("{0:0.00}", Convert.ToDouble(quantity.Text) * price) + " " + productList.SelectedItem.Text + " x" + quantity.Text;
 
                 //set labelInvoice
                 labelInvoice.Text = invoiceID.ToString();

@@ -59,6 +59,14 @@
                 <asp:Button ID="anotherItem" runat="server" OnClick="anotherItem_Click" Text="Add Another Item" />
                 &nbsp;&nbsp;&nbsp;
                 <asp:Button ID="finalize" runat="server" OnClick="finalize_Click" Text="Finalize Invoice" />
+                <br />
+                <br />
+                Item List:<br />
+                <asp:TextBox ID="SoldSoFar" runat="server" Height="191px" ReadOnly="True" TextMode="MultiLine" Width="670px"></asp:TextBox>
+                <br />
+                <br />
+                Total Sales:
+                <asp:Label ID="SalesSoFar" runat="server" Text="$0.00"></asp:Label>
             </asp:View>
             <asp:View ID="Summary" runat="server">A new invoice has been successfully created!<br />
                 <br />
