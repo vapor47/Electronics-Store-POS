@@ -11,6 +11,7 @@ namespace electronicspos.com
 {
     public partial class createInvoice : System.Web.UI.Page
     {
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -59,6 +60,46 @@ namespace electronicspos.com
 
             if (validID)
             {
+                if (delivery.SelectedValue == "1")
+                {
+                    String address;
+                    con.Open();
+                    query = "select shipping_address, city, state, zipcode from CUSTOMER where customerID = " + customerID.Text;
+                    cmd = new SqlCommand(query, con);
+                    rd = cmd.ExecuteReader();
+
+                    if (rd.HasRows)
+                    {
+                        rd.Read();
+                        address = rd[0] + ", " + rd[1] + ", " + rd[2] + " " + rd[3];
+                        labelAddress.Text = address;
+                        con.Close();
+
+                        //Create Invoice
+                        con.Open();
+                        query = "insert into INVOICE (cust_ID, emp_ID, totalSales, payment_method, home_delivery, date_time) values ('" + customerID.Text + "','" + Session["user"] + "',0,'" + payment.SelectedValue.ToString() + "','" + delivery.SelectedValue.ToString() + "', DATEADD (hour, -5, GETDATE()))";
+                        //query = "insert into INVOICE (cust_ID, emp_ID, totalSales, payment_method, home_delivery, date_time) values ('" + customerID.Text + "',1,0,'" + payment.SelectedValue.ToString() + "','" + delivery.SelectedValue.ToString() + "', DATEADD (hour, -5, GETDATE()))"; //local testing
+                        cmd = new SqlCommand(query, con);
+                        cmd.ExecuteNonQuery();
+                        con.Close();
+
+                        //set labels
+                        labelEmployee.Text = Session["user"].ToString();
+                        //labelEmployee.Text = "1"; //local testing
+                        labelCustomer.Text = customerID.Text;
+                        labelPayment.Text = payment.SelectedValue;
+
+                        MultiView1.SetActiveView(AddItem);
+                    }
+                    else
+                    {
+                        con.Close();
+                        Response.Write("NO SHIPPING INFORMATION AVAILABLE FOR THIS CUSTOMER!");
+                    }
+                }
+
+                else
+                {
                     //Create Invoice
                     con.Open();
                     query = "insert into INVOICE (cust_ID, emp_ID, totalSales, payment_method, home_delivery, date_time) values ('" + customerID.Text + "','" + Session["user"] + "',0,'" + payment.SelectedValue.ToString() + "','" + delivery.SelectedValue.ToString() + "', DATEADD (hour, -5, GETDATE()))";
@@ -73,22 +114,9 @@ namespace electronicspos.com
                     labelCustomer.Text = customerID.Text;
                     labelPayment.Text = payment.SelectedValue;
 
-                    /*Need to first confirm if customer has shipping info
-                    if (delivery.SelectedValue == "1") 
-                    {
-                        String address;
-                        con.Open();
-                        query = "select shipping_address, city, state, zipcode from CUSTOMER where customerID = " + customerID.Text;
-                        cmd = new SqlCommand(query, con);
-                        rd = cmd.ExecuteReader();
-                        address = rd[0] + ", " + rd[1] + ", " + rd[2] + " " + rd[3];
-                        labelAddress.Text = address;
-                        con.Close();
-                    }
-                    */
-
-
                     MultiView1.SetActiveView(AddItem);
+                }
+                
             }
 
             else
@@ -182,6 +210,9 @@ namespace electronicspos.com
 
                 }
 
+                //update salesList
+                listSales.Text += "$" + string.Format("{0:0.00}", Convert.ToDouble(quantity.Text) * price)+ " " + productList.SelectedItem.Text + " x" + quantity.Text;
+
                 //empty boxes to prep for new items to be added
                 quantity.Text = string.Empty;
                 productList.SelectedIndex = 0;
@@ -272,6 +303,9 @@ namespace electronicspos.com
 
                 }
 
+                //update salesList
+                listSales.Text += "$" + string.Format("{0:0.00}", Convert.ToDouble(quantity.Text) * price) + " " + productList.SelectedItem.Text + " x" + quantity.Text + Environment.NewLine;
+
                 //set labelInvoice
                 labelInvoice.Text = invoiceID.ToString();
 
@@ -279,21 +313,10 @@ namespace electronicspos.com
                 con.Open();
                 query = "select totalSales from INVOICE where invoiceID = " + invoiceID.ToString();
                 cmd = new SqlCommand(query, con);
-                String total = Convert.ToString(cmd.ExecuteScalar());
-                labelTotal.Text = "$" + total;
+                double total = Convert.ToDouble(cmd.ExecuteScalar());
+                labelTotal.Text = "$" + string.Format("{0:0.00}", total);
                 con.Close();
 
-                //set labelList
-                String salesList = "";
-                con.Open();
-                query = "select I.quantity, P.name, I.priceSold from InvoiceDetail as I, PRODUCT as P where I.Inv_ID = " + invoiceID.ToString() + " and I.Pro_ID = P.productID";
-                cmd = new SqlCommand(query, con);
-                rd = cmd.ExecuteReader();
-                while (rd.Read())
-                {
-                    salesList += rd[0].ToString() + "x " + rd[1].ToString() + " $" + Convert.ToDouble(rd[2]) * Convert.ToDouble(rd[0]) + "<br />";
-                }
-                labelList.Text = salesList;
 
                 //refresh page since this invoice is finalized
                 MultiView1.SetActiveView(Summary);

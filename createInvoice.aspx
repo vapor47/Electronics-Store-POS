@@ -5,12 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
-    <style type="text/css">
-        .auto-style1 {
-            text-decoration: underline;
-        }
-    </style>
-</head>
+    </head>
 <body>
     <form id="form1" runat="server">
         <asp:MultiView ID="MultiView1" runat="server" OnActiveViewChanged="MultiView1_ActiveViewChanged">
@@ -53,7 +48,7 @@
                     <asp:RangeValidator ID="prodRequired" runat="server" ControlToValidate="productList" ErrorMessage="Select a Product" MaximumValue="999999" MinimumValue="0"></asp:RangeValidator>
                     <br />
                     Quantity:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <asp:TextBox ID="quantity" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="quantity" runat="server" TextMode="Number"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="quantityRequired" runat="server" ControlToValidate="quantity" ErrorMessage="Enter a Quantity"></asp:RequiredFieldValidator>
                     &nbsp;&nbsp;
                     <asp:RangeValidator ID="validQuantity" runat="server" ControlToValidate="quantity" ErrorMessage="Enter a Valid Quantity" MaximumValue="9999" MinimumValue="0"></asp:RangeValidator>
@@ -81,12 +76,11 @@
                 <asp:Label ID="labelPayment" runat="server"></asp:Label>
                 <br />
                 Shipping Address:
-                <asp:Label ID="labelAddress" runat="server"></asp:Label>
+                <asp:Label ID="labelAddress" runat="server">Not Applicable</asp:Label>
                 <br />
                 <br />
-                <span class="auto-style1">Item List:
-                <asp:Label ID="labelList" runat="server"></asp:Label>
-                </span>
+                Item List:<br />
+                <asp:TextBox ID="listSales" runat="server" Height="147px" ReadOnly="True" TextMode="MultiLine" Width="666px"></asp:TextBox>
                 <br />
                 <br />
                 Total Sales:

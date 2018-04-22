@@ -39,16 +39,6 @@ namespace electronicspos.com
             cmd.ExecuteNonQuery();
             con.Close();
 
-            /* When I test this it claims the names I entered aren't in the database so it doesn't return anything.
-            //retrieve Customer ID
-            con.Open();
-            query = "select customerID from CUSTOMER where first_name = " + Fname.Text + " and last_name = " + Lname.Text + " order by customerID desc";
-            cmd = new SqlCommand(query, con);
-            String customerID = cmd.ExecuteScalar().ToString();
-            con.Close();*/
-
-            //set labels
-            //labelID.Text = customerID;
             labelFname.Text = Fname.Text;
             labelLname.Text = Lname.Text;
             labelEmail.Text = email.Text;

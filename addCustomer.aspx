@@ -109,9 +109,6 @@
             <asp:View ID="Summary" runat="server"> 
                  A new customer has been successfully added!<br />
                  <br />
-                 Customer ID:
-                 <asp:Label ID="labelID" runat="server"></asp:Label>
-                 <br />
                  Name:
                  <asp:Label ID="labelFname" runat="server"></asp:Label>
                  &nbsp;<asp:Label ID="labelLname" runat="server"></asp:Label>

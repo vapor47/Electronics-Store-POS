@@ -202,15 +202,6 @@ namespace electronicspos.com {
         protected global::System.Web.UI.WebControls.View Summary;
         
         /// <summary>
-        /// labelID control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label labelID;
-        
-        /// <summary>
         /// labelFname control.
         /// </summary>
         /// <remarks>
