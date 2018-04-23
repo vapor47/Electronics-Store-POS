@@ -1,0 +1,104 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Web.Configuration;
+using System.Data.SqlClient;
+using System.Web.Security;
+
+public partial class _Default : System.Web.UI.Page
+{
+	body 
+	{
+		background: #eee !important;
+	}
+
+	.wrapper 
+	{
+		margin-top: 80px;
+		margin-bottom: 80px;
+	}
+
+	.form-signin 
+	{
+		max-width: 380px;
+		padding: 15px 35px 45px;
+		margin: 0 auto;
+		background-color: #fff;
+		border: 1px solid rgba(0, 0, 0, 0.1);
+	}
+
+
+	.form-signin .form-control 	
+	{
+		position: relative;
+		font-size: 16px;
+		height: auto;
+		padding: 10px;
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		box-sizing: border-box;
+	}
+	.form-signin .form-control:focus 
+	{
+		z-index: 2;
+	}
+	.form-signin input[type="text"] 
+	{
+		margin-bottom: -1px;
+		border-bottom-left-radius: 0;
+		border-bottom-right-radius: 0;
+	}
+	.form-signin input[type="password"] 
+	{
+		margin-bottom: 20px;
+		border-top-left-radius: 0;
+		border-top-right-radius: 0;
+	}
+
+	
+	
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        Session.Clear();
+    }
+
+    protected void LoginBtn_Click(object sender, EventArgs e)
+    {
+        
+        SqlConnection con = new SqlConnection(
+           WebConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString);
+        con.Open();
+
+        if (txtID.Text.All(char.IsDigit))   
+
+        {
+            string query = "select COUNT(1) from LogIn where ID = " + txtID.Text + " and password = '"
+                + FormsAuthentication.HashPasswordForStoringInConfigFile(txtPass.Text, "MD5")
+                + "'";
+            SqlCommand cmd = new SqlCommand(query, con);
+            int output = Convert.ToInt32(cmd.ExecuteScalar());
+            if (output == 1)
+            {
+                query = "select privilege from EMPLOYEE where employeeID = " + txtID.Text;
+                cmd = new SqlCommand(query, con);
+                Session["user"] = txtID.Text;
+                if (Convert.ToInt32(cmd.ExecuteScalar()) == 1)
+                    //Response.Redirect("~/ManagerView.aspx");
+                    Response.Redirect("~/CreateInvoice.aspx");
+                else
+                    //Response.Redirect("~/EmployeeView.aspx");
+                    Response.Redirect("~/CreateInvoice.aspx");
+            }
+            else
+                // Response.Write("Incorrect User Credentials");
+                Label.Text = "Incorrect User Credentials";
+        }
+        else
+            Label.Text = "Incorrect User Credentials";
+    }
+
+   
+}
