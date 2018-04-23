@@ -36,10 +36,11 @@ public partial class _Default : System.Web.UI.Page
                 cmd = new SqlCommand(query, con);
                 Session["user"] = txtID.Text;
                 if (Convert.ToInt32(cmd.ExecuteScalar()) == 1)
-                    Response.Redirect("~/ManagerView.aspx");
+                    //Response.Redirect("~/ManagerView.aspx");
+                    Response.Redirect("~/CreateInvoice.aspx.aspx");
                 else
-                    Response.Redirect("~/EmployeeView.aspx");
-
+                    //Response.Redirect("~/EmployeeView.aspx");
+                    Response.Redirect("~/CreateInvoice.aspx.aspx");
             }
             else
                 // Response.Write("Incorrect User Credentials");
