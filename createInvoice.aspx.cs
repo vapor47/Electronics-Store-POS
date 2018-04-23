@@ -38,6 +38,9 @@ namespace electronicspos.com
         protected override void OnPreInit(EventArgs e)
         {
             base.OnPreInit(e);
+            SqlConnection con = new SqlConnection(
+            WebConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString);
+            con.Open();
             string query = "select privilege from EMPLOYEE where employeeID = " + Session["user"];
             SqlCommand cmd = new SqlCommand(query, con);
             int output = Convert.ToInt32(cmd.ExecuteScalar());
