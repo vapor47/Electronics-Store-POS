@@ -1,13 +1,9 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="addEmployee.aspx.cs" Inherits="electronicspos.com.addEmployee" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="addEmployee.aspx.cs" Inherits="electronicspos.com.addEmployee" %>
 
-<!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title></title>
-</head>
-<body>
-    <form id="form1" runat="server">
+<asp:Content ID="Content2" ContentPlaceHolderID="head" runat="server">
+    <title>Add Employee</title>
+</asp:Content>
+<asp:Content ID="Content1" ContentPlaceHolderID="Main" Runat="Server">
         <asp:MultiView ID="MultiView1" runat="server">
             <asp:View ID="EntreeForm" runat="server">
                 <div>
@@ -54,6 +50,4 @@
                 <asp:Button ID="anotherEmployee" runat="server" OnClick="anotherEmployee_Click" Text="Add Another Employee" />
             </asp:View>
         </asp:MultiView>
-    </form>
-</body>
-</html>
+</asp:Content>
