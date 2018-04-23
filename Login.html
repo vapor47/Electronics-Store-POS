@@ -5,20 +5,42 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Login</title>
+	<style type="text/css">
+        .auto-style1 {
+            width: 45%;
+            margin-left: 237px;
+            margin-right: 0px;
+        }
+        .auto-style2 {
+            width: 39px;
+        }
+        .auto-style3 {
+            width: 113px;
+        }
+    </style>
+
+	
 	<link rel='stylesheet prefetch' href='http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css'>
 
       <link rel="stylesheet" href="css/style.css">
+	  
+	  
 </head>
 <body>
+
 
 	 <div class="wrapper">
     <form id="form1" runat="server">
         <div>
+		 <table class="auto-style1" border="1">
+            <tr>
+                <td class="auto-style2">
 		<form class="form-signin"
 		<h2 class="form-signin-heading">POS Login</h2>
 		
             
             <asp:Label ID="Label1" input type="text" class="form-control" name="username" required="" autofocus="" runat="server" Text="Login ID"></asp:Label>
+			
             <asp:TextBox ID="txtID" runat="server"></asp:TextBox>
 
             <asp:Label ID="Label2" input type="password" class="form-control" name="password" required="" runat="server"  Text="Password"></asp:Label>
