@@ -1,13 +1,9 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="addCustomer.aspx.cs" Inherits="electronicspos.com.WebForm1" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="addCustomer.aspx.cs" Inherits="electronicspos.com.WebForm1" %>
 
-<!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title></title>
-</head>
-<body>
-    <form id="form1" runat="server">
+<asp:Content ID="Content2" ContentPlaceHolderID="head" runat="server">
+    <title>Add Customer</title>
+</asp:Content>
+<asp:Content ID="Content1" ContentPlaceHolderID="Main" Runat="Server">
         <asp:MultiView ID="MultiView1" runat="server">
             <asp:View ID="EntreeForm" runat="server">
                 <div>
@@ -130,6 +126,4 @@
                  <asp:Button ID="anotherCustomer" runat="server" OnClick="anotherCustomer_Click" Text="Add Another Customer" />
             </asp:View>
         </asp:MultiView>
-    </form>
-</body>
-</html>
+</asp:Content>
