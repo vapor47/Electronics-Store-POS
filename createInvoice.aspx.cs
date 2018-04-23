@@ -34,6 +34,18 @@ namespace electronicspos.com
             }
 
         }
+        
+        protected override void OnPreInit(EventArgs e)
+        {
+            base.OnPreInit(e);
+            string query = "select privilege from EMPLOYEE where employeeID = " + Session["user"];
+            SqlCommand cmd = new SqlCommand(query, con);
+            int output = Convert.ToInt32(cmd.ExecuteScalar());
+            if (output == 1)
+                MasterPageFile = "pos.master";
+            else
+                MasterPageFile = "basic.master";
+        }
 
         protected void startInvoice_Click(object sender, EventArgs e)
         {
