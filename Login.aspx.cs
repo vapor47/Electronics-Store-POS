@@ -37,10 +37,10 @@ public partial class _Default : System.Web.UI.Page
                 Session["user"] = txtID.Text;
                 if (Convert.ToInt32(cmd.ExecuteScalar()) == 1)
                     //Response.Redirect("~/ManagerView.aspx");
-                    Response.Redirect("~/CreateInvoice.aspx.aspx");
+                    Response.Redirect("~/CreateInvoice.aspx");
                 else
                     //Response.Redirect("~/EmployeeView.aspx");
-                    Response.Redirect("~/CreateInvoice.aspx.aspx");
+                    Response.Redirect("~/CreateInvoice.aspx");
             }
             else
                 // Response.Write("Incorrect User Credentials");
