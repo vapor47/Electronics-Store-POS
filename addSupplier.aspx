@@ -1,7 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="addSupplier.aspx.cs" Inherits="electronicspos.com.addSupplier" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="head" runat="server">
-    <title>Reports</title>
+    <title>Add Supplier</title>
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="Main" Runat="Server">
         <asp:MultiView ID="MultiView1" runat="server">
