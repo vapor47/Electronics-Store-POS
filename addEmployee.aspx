@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="addEmployee.aspx.cs" Inherits="electronicspos.com.addEmployee" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="addEmployee.aspx.cs" Inherits="electronicspos.com.addEmployee" MasterPageFile="~/pos.Master" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="head" runat="server">
     <title>Add Employee</title>
