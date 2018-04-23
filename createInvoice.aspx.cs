@@ -205,7 +205,7 @@ namespace electronicspos.com
                 //Check if item has already been added to the InvoiceDetail
                 con.Open();
                 bool isExisting = false;
-                query = "select Pro_ID from InvoiceDetail";
+                query = "select Pro_ID from InvoiceDetail where Inv_ID = " + invoiceID.ToString();
                 cmd = new SqlCommand(query, con);
                 SqlDataReader rd = cmd.ExecuteReader();
                 while (rd.Read())
@@ -310,7 +310,7 @@ namespace electronicspos.com
                 //Check if item has already been added to the InvoiceDetail
                 con.Open();
                 bool isExisting = false;
-                query = "select Pro_ID from InvoiceDetail";
+                query = "select Pro_ID from InvoiceDetail where Inv_ID = " + invoiceID.ToString();
                 cmd = new SqlCommand(query, con);
                 SqlDataReader rd = cmd.ExecuteReader();
                 while (rd.Read())
