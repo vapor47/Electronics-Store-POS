@@ -1,13 +1,9 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="createInvoice.aspx.cs" Inherits="electronicspos.com.createInvoice" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="createInvoice.aspx.cs" Inherits="electronicspos.com.createInvoice" %>
 
-<!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title></title>
-    </head>
-<body>
-    <form id="form1" runat="server">
+<asp:Content ID="Content2" ContentPlaceHolderID="head" runat="server">
+    <title>New Transaction</title>
+</asp:Content>
+<asp:Content ID="Content1" ContentPlaceHolderID="Main" Runat="Server">
         <asp:MultiView ID="MultiView1" runat="server" OnActiveViewChanged="MultiView1_ActiveViewChanged">
             <asp:View ID="Create" runat="server">
                 <div>
@@ -98,6 +94,4 @@
                 <asp:Button ID="newInvoice" runat="server" OnClick="newInvoice_Click" Text="Create New Invoice" />
             </asp:View>
         </asp:MultiView>
-    </form>
-</body>
-</html>
+</asp:Content>
