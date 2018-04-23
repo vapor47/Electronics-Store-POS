@@ -27,14 +27,5 @@ public partial class EmployeeView : System.Web.UI.Page
         }
     }
 
-    protected void LogoutBtn_Click(object sender, EventArgs e)
-    {
-        Session.Clear();
-        Response.Redirect("~/Login.aspx");
-    }
 
-    protected void CheckBtn_Click(object sender, EventArgs e)
-    {
-        Response.Redirect("~/CheckStock.aspx");
-    }
 }

@@ -13,26 +13,22 @@
             <table class="auto-style1">
                 <tr>
                     <td class="auto-style2">
-                        <asp:Button ID="CheckBtn" runat="server" Text="Check Price/Stock" OnClick="CheckBtn_Click" />
-                    </td>
+                        &nbsp;</td>
                     <td>&nbsp;</td>
                 </tr>
                 <tr>
                     <td class="auto-style2">
-                        <asp:Button ID="Button2" runat="server" Text="Button" />
-                    </td>
+                        &nbsp;</td>
                     <td>&nbsp;</td>
                 </tr>
                 <tr>
                     <td class="auto-style2">
-                        <asp:Button ID="Button3" runat="server" Text="Button" />
-                    </td>
+                        &nbsp;</td>
                     <td>&nbsp;</td>
                 </tr>
                 <tr>
                     <td class="auto-style2">
-                        <asp:Button ID="Button4" runat="server" Text="Button" />
-                    </td>
+                        &nbsp;</td>
                     <td>&nbsp;</td>
                 </tr>
                 <tr>

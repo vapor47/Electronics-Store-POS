@@ -43,38 +43,5 @@ public partial class ManagerView : System.Web.UI.Page
 
 
 
-    protected void CheckBtn_Click(object sender, EventArgs e)
-    {
-        Response.Redirect("~/CheckStock.aspx");
-    }
 
-    protected void RestockBtn_Click(object sender, EventArgs e)
-    {
-        Response.Redirect("~/Restock.aspx");
-    }
-
-    protected void newBtn_Click(object sender, EventArgs e)
-    {
-        Response.Redirect("~/NewProduct.aspx");
-    }
-
-    protected void EditBtn_Click(object sender, EventArgs e)
-    {
-        Response.Redirect("~/EditProduct.aspx");
-    }
-
-    protected void Button5_Click(object sender, EventArgs e)
-    {
-        Response.Redirect("~/Allproduct.aspx");
-    }
-
-    protected void Button6_Click(object sender, EventArgs e)
-    {
-        Response.Redirect("~/EditPrice.aspx");
-    }
-
-    protected void Button7_Click(object sender, EventArgs e)
-    {
-        Response.Redirect("~/Reports.aspx");
-    }
 }

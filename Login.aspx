@@ -22,7 +22,7 @@
 <body>
     <form id="form1" runat="server">
         <div>
-        <table class="auto-style1" border="2">
+        <table class="auto-style1" border="1">
             <tr>
                 <td class="auto-style2">
             <asp:Label ID="Label1" runat="server" Text="ID"></asp:Label>:</td>
