@@ -160,10 +160,17 @@ namespace electronicspos.com
             con.Close();
             if (quant >= Convert.ToInt32(quantity.Text))
             {
+                LowStockError.Visible = false;
+
                 //check if this brings stock below 25
-                if(quant - Convert.ToInt32(quantity.Text) < 26)
+                if (quant - Convert.ToInt32(quantity.Text) < 26)
                 {
-                    Response.Write("NOTICE! There are only " + Convert.ToString(quant - Convert.ToInt32(quantity.Text)) + " of " + productList.SelectedItem.Text + " remaining in stock!");
+                    StockWarning.Text = "NOTICE! There are only " + Convert.ToString(quant - Convert.ToInt32(quantity.Text)) + " of " + productList.SelectedItem.Text + " remaining in stock!";
+                    StockWarning.Visible = true;
+                }
+                else
+                {
+                    StockWarning.Visible = false;
                 }
 
                 //Retrieve the Invoice ID we're working on
@@ -248,7 +255,8 @@ namespace electronicspos.com
             }
             else
             {
-                Response.Write("INVALID QUANTITY! THERE ARE ONLY " + quant + " OF THIS ITEM IN STOCK!");
+                LowStockError.Text = "INVALID QUANTITY! THERE ARE ONLY " + quant + " OF THIS ITEM IN STOCK!";
+                LowStockError.Visible = true;
             }
 
         }
@@ -268,6 +276,8 @@ namespace electronicspos.com
             con.Close();
             if (quant >= Convert.ToInt32(quantity.Text))
             {
+                LowStockError.Visible = false;
+
                 //Retrieve the Invoice ID we're working on
                 con.Open();
                 query = "SELECT invoiceID FROM INVOICE WHERE emp_ID = " + Session["user"] + " ORDER BY invoiceID DESC";
@@ -353,12 +363,18 @@ namespace electronicspos.com
                 //check if this brings stock below 25
                 if (quant - Convert.ToInt32(quantity.Text) < 26)
                 {
-                    Response.Write("NOTICE! There are only " + Convert.ToString(quant - Convert.ToInt32(quantity.Text)) + " of " + productList.SelectedItem.Text + " remaining in stock!");
+                    StockWarning1.Text = "NOTICE! There are only " + Convert.ToString(quant - Convert.ToInt32(quantity.Text)) + " of " + productList.SelectedItem.Text + " remaining in stock!";
+                    StockWarning1.Visible = true;
+                }
+                else
+                {
+                    StockWarning1.Visible = false;
                 }
             }
             else
             {
-                Response.Write("INVALID QUANTITY! THERE ARE ONLY " + quant + " OF THIS ITEM IN STOCK!");
+                LowStockError.Text = "INVALID QUANTITY! THERE ARE ONLY " + quant + " OF THIS ITEM IN STOCK!";
+                LowStockError.Visible = true;
             }
 
         }

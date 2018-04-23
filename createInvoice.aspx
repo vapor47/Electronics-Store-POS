@@ -49,12 +49,14 @@
                     &nbsp;&nbsp;
                     <asp:RangeValidator ID="validQuantity" runat="server" ControlToValidate="quantity" ErrorMessage="Enter a Valid Quantity" MaximumValue="9999" MinimumValue="0"></asp:RangeValidator>
                     <br />
+                    <asp:Label ID="StockWarning" runat="server"></asp:Label>
+                    <asp:Label ID="LowStockError" runat="server"></asp:Label>
                     <br />
                     <br />
                 </div>
                 <asp:Button ID="anotherItem" runat="server" OnClick="anotherItem_Click" Text="Add Another Item" />
                 &nbsp;&nbsp;&nbsp;
-                <asp:Button ID="finalize" runat="server" OnClick="finalize_Click" Text="Finalize Invoice" />
+                <asp:Button ID="finalize" runat="server" OnClick="finalize_Click" Text="Add and Finalize Invoice" />
                 <br />
                 <br />
                 Item List:<br />
@@ -64,7 +66,11 @@
                 Total Sales:
                 <asp:Label ID="SalesSoFar" runat="server" Text="$0.00"></asp:Label>
             </asp:View>
-            <asp:View ID="Summary" runat="server">A new invoice has been successfully created!<br />
+            <asp:View ID="Summary" runat="server">
+                <asp:Label ID="StockWarning1" runat="server"></asp:Label>
+                <br />
+                <br />
+                A new invoice has been successfully created!<br />
                 <br />
                 Invoice ID:
                 <asp:Label ID="labelInvoice" runat="server"></asp:Label>
@@ -94,4 +100,4 @@
                 <asp:Button ID="newInvoice" runat="server" OnClick="newInvoice_Click" Text="Create New Invoice" />
             </asp:View>
         </asp:MultiView>
-</asp:Content>
+    </asp:Content>
