@@ -34,7 +34,7 @@ namespace electronicspos.com
             }
 
         }
-        
+
         protected override void OnPreInit(EventArgs e)
         {
             base.OnPreInit(e);
@@ -131,7 +131,7 @@ namespace electronicspos.com
 
                     MultiView1.SetActiveView(AddItem);
                 }
-                
+
             }
 
             else
@@ -160,10 +160,15 @@ namespace electronicspos.com
             con.Close();
             if (quant >= Convert.ToInt32(quantity.Text))
             {
+                //check if this brings stock below 25
+                if(quant - Convert.ToInt32(quantity.Text) < 26)
+                {
+                    Response.Write("NOTICE! There are only " + Convert.ToString(quant - Convert.ToInt32(quantity.Text)) + " of " + productList.SelectedItem.Text + " remaining in stock!");
+                }
 
                 //Retrieve the Invoice ID we're working on
                 con.Open();
-                query = "SELECT invoiceID FROM INVOICE WHERE emp_ID = "+Session["user"]+" ORDER BY invoiceID DESC";
+                query = "SELECT invoiceID FROM INVOICE WHERE emp_ID = " + Session["user"] + " ORDER BY invoiceID DESC";
                 //query = "SELECT invoiceID FROM INVOICE WHERE emp_ID = 1 ORDER BY invoiceID DESC"; //local testing
                 cmd = new SqlCommand(query, con);
                 int invoiceID = (int)cmd.ExecuteScalar();
@@ -227,7 +232,7 @@ namespace electronicspos.com
 
                 //update salesList
                 SoldSoFar.Text += "$" + string.Format("{0:0.00}", Convert.ToDouble(quantity.Text) * price) + " " + productList.SelectedItem.Text + " x" + quantity.Text + Environment.NewLine;
-                listSales.Text += "$" + string.Format("{0:0.00}", Convert.ToDouble(quantity.Text) * price)+ " " + productList.SelectedItem.Text + " x" + quantity.Text +Environment.NewLine;
+                listSales.Text += "$" + string.Format("{0:0.00}", Convert.ToDouble(quantity.Text) * price) + " " + productList.SelectedItem.Text + " x" + quantity.Text + Environment.NewLine;
 
                 //set SalesSoFar
                 con.Open();
@@ -265,7 +270,7 @@ namespace electronicspos.com
             {
                 //Retrieve the Invoice ID we're working on
                 con.Open();
-                query = "SELECT invoiceID FROM INVOICE WHERE emp_ID = "+Session["user"]+" ORDER BY invoiceID DESC";
+                query = "SELECT invoiceID FROM INVOICE WHERE emp_ID = " + Session["user"] + " ORDER BY invoiceID DESC";
                 //query = "SELECT invoiceID FROM INVOICE WHERE emp_ID = 1 ORDER BY invoiceID DESC"; //local testing
                 cmd = new SqlCommand(query, con);
                 int invoiceID = (int)cmd.ExecuteScalar();
@@ -344,12 +349,18 @@ namespace electronicspos.com
 
                 //refresh page since this invoice is finalized
                 MultiView1.SetActiveView(Summary);
+
+                //check if this brings stock below 25
+                if (quant - Convert.ToInt32(quantity.Text) < 26)
+                {
+                    Response.Write("NOTICE! There are only " + Convert.ToString(quant - Convert.ToInt32(quantity.Text)) + " of " + productList.SelectedItem.Text + " remaining in stock!");
+                }
             }
             else
             {
                 Response.Write("INVALID QUANTITY! THERE ARE ONLY " + quant + " OF THIS ITEM IN STOCK!");
             }
-            
+
         }
 
         protected void newInvoice_Click(object sender, EventArgs e)
