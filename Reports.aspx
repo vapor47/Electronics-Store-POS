@@ -79,7 +79,7 @@
             </asp:Panel>
             <asp:Panel ID="Panel8" runat="server" Direction="LeftToRight" Height="30px">
                 &nbsp;<asp:Label ID="Label12" runat="server" Text="Product ID: "></asp:Label>
-                <asp:TextBox ID="TextBox3" runat="server" OnTextChanged="TextBox3_TextChanged"></asp:TextBox>
+                <asp:TextBox ID="TextBox3" runat="server" OnTextChanged="TextBox3_TextChanged" TextMode="Number"></asp:TextBox>
             </asp:Panel>
             &nbsp;<asp:Label ID="Label13" runat="server" Text="Brand: "></asp:Label>
             <asp:TextBox ID="TextBox4" runat="server" OnTextChanged="TextBox4_TextChanged"></asp:TextBox>
@@ -87,13 +87,12 @@
             <asp:TextBox ID="TextBox5" runat="server" OnTextChanged="TextBox5_TextChanged"></asp:TextBox>
             <br />
             &nbsp;Quantity Below:
-            <asp:TextBox ID="TextBox11" runat="server" OnTextChanged="TextBox11_TextChanged"></asp:TextBox>
+            <asp:TextBox ID="TextBox11" runat="server" OnTextChanged="TextBox11_TextChanged" TextMode="Number"></asp:TextBox>
             <asp:Panel ID="Panel10" runat="server">
                 <div>
                 </div>
                 <asp:Button ID="Button3" runat="server" BorderColor="Black" BorderStyle="Solid" BorderWidth="3px" Font-Bold="True" Font-Names="Arial" Font-Overline="False" Font-Size="X-Large" ForeColor="Black" Height="70px" Text="Generate Report" Width="210px" OnClick="Inventory_Click" />
                 <br />
-                <asp:Label ID="Label30" runat="server"></asp:Label>
                 <hr />
                 <div id="popup" style="max-height:300px;overflow-y:scroll;">
                     <asp:GridView ID="GridView1" runat="server" BackColor="White" BorderColor="Black" BorderStyle="Solid" BorderWidth="1px" CellPadding="4" ForeColor="Black" GridLines="Vertical" AutoGenerateColumns="False">
@@ -186,7 +185,7 @@
                 </asp:Panel>
             <asp:Panel ID="Panel19" runat="server" Direction="LeftToRight" Height="30px">
                 <asp:Label ID="Label36" runat="server" Text="Customer ID: "></asp:Label>
-                <asp:TextBox ID="TextBox16" runat="server" OnTextChanged="TextBox1_TextChanged"></asp:TextBox>
+                <asp:TextBox ID="TextBox16" runat="server" OnTextChanged="TextBox1_TextChanged" TextMode="Number"></asp:TextBox>
                 </asp:Panel>
             <asp:Panel ID="Panel17" runat="server" Direction="LeftToRight" Height="30px">
                 <asp:Label ID="Label33" runat="server" Text="Start Date: "></asp:Label>
@@ -199,16 +198,13 @@
                 <asp:Button ID="Button6" runat="server" BorderColor="Black" BorderStyle="Solid" BorderWidth="3px" Font-Bold="True" Font-Names="Arial" Font-Overline="False" Font-Size="X-Large" ForeColor="Black" Height="70px" Text="Generate Report" Width="210px" OnClick="PurchaseHistory_Click" />
                 <hr />
                 <div id="popup" style="max-height:300px;overflow-y:scroll;">
-                    <asp:GridView ID="GridView8" runat="server" BackColor="White" BorderColor="Black" BorderStyle="Solid" BorderWidth="1px" CellPadding="4" ForeColor="Black" GridLines="Vertical" DataKeyNames="invoiceID">
+                    <asp:GridView ID="GridView8" runat="server" BackColor="White" BorderColor="Black" BorderStyle="Solid" BorderWidth="1px" CellPadding="4" ForeColor="Black" GridLines="Vertical" DataKeyNames="invoiceID" AutoGenerateColumns="False">
                         <AlternatingRowStyle BackColor="White" />
                         <Columns>
                             <asp:BoundField DataField="date_time" HeaderText="Date &amp; Time" SortExpression="date_time" >
                             <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                             </asp:BoundField>
                             <asp:BoundField DataField="invoiceID" HeaderText="Invoice ID" >
-                            <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
-                            </asp:BoundField>
-                            <asp:BoundField DataField="cust_ID" HeaderText="Customer ID" >
                             <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                             </asp:BoundField>
                             <asp:BoundField DataField="emp_ID" HeaderText="Employee ID" >
@@ -242,7 +238,7 @@
             </asp:Panel>
             <asp:Panel ID="Panel21" runat="server" Direction="LeftToRight" Height="30px">
                 &nbsp;<asp:Label ID="Label39" runat="server" Text="Transaction ID: "></asp:Label>
-                <asp:TextBox ID="TextBox17" runat="server" OnTextChanged="TextBox17_TextChanged"></asp:TextBox>
+                <asp:TextBox ID="TextBox17" runat="server" OnTextChanged="TextBox17_TextChanged" TextMode="Number"></asp:TextBox>
                 </asp:Panel>
             <asp:Panel ID="Panel22" runat="server">
                 <div>
@@ -317,10 +313,10 @@
             </asp:Panel>
             <asp:Panel ID="Panel7" runat="server" Direction="LeftToRight" Height="30px">
                 &nbsp;<asp:Label ID="customerIDLabel" runat="server" Text="Customer ID: "></asp:Label>
-                <asp:TextBox ID="TextBox1" runat="server" OnTextChanged="TextBox1_TextChanged"></asp:TextBox>
+                <asp:TextBox ID="TextBox1" runat="server" OnTextChanged="TextBox1_TextChanged" TextMode="Number"></asp:TextBox>
                 </asp:Panel>
             &nbsp;<asp:Label ID="customerIDLabel0" runat="server" Text="Customer Email: "></asp:Label>
-            <asp:TextBox ID="TextBox2" runat="server" OnTextChanged="TextBox2_TextChanged"></asp:TextBox>
+            <asp:TextBox ID="TextBox2" runat="server" OnTextChanged="TextBox2_TextChanged" TextMode="Email"></asp:TextBox>
             <asp:Panel ID="Panel9" runat="server">
                 <div>
                 </div>
@@ -393,7 +389,7 @@
             </asp:Panel>
             <asp:Panel ID="Panel2" runat="server" Direction="LeftToRight" Height="30px">
                 &nbsp;<asp:Label ID="Label5" runat="server" Text="Employee ID: "></asp:Label>
-                <asp:TextBox ID="TextBox8" runat="server" OnTextChanged="TextBox8_TextChanged"></asp:TextBox>
+                <asp:TextBox ID="TextBox8" runat="server" OnTextChanged="TextBox8_TextChanged" TextMode="Number"></asp:TextBox>
                 </asp:Panel>
             &nbsp;<asp:Label ID="Label6" runat="server" Text="First Name: "></asp:Label>
             <asp:TextBox ID="TextBox9" runat="server" OnTextChanged="TextBox9_TextChanged"></asp:TextBox>

@@ -134,7 +134,7 @@ namespace ElectronicsPOS
             productID = TextBox3.Text;
             brand = TextBox4.Text;
             string quantity = TextBox11.Text;
-            Label30.Text = string.Empty;
+            Label16.Text = string.Empty;
             SqlDataSource1.SelectParameters.Clear();
             SqlDataSource1.SelectParameters.Add("productID", productID);
             SqlDataSource1.SelectParameters.Add("brand", brand);
@@ -150,7 +150,7 @@ namespace ElectronicsPOS
             GridView1.DataBind();
             if (GridView1.Rows.Count == 0)
             {
-                Label30.Text = "No matching results found.";
+                Label16.Text = "No matching results found.";
             }
         }
         string productName;
@@ -269,7 +269,7 @@ namespace ElectronicsPOS
             SqlDataSource1.SelectParameters.Add("startDate", startDate);
             SqlDataSource1.SelectParameters.Add("endDate", endDate);
             SqlDataSource1.SelectParameters.Add("customerID", customerID);
-            SqlDataSource1.SelectCommand = "SELECT * from INVOICE FULL OUTER JOIN InvoiceDetail ON INVOICE.invoiceID = InvoiceDetail.Inv_ID WHERE date_time BETWEEN CONVERT(datetime, @startDate) AND CONVERT(datetime, @endDate) AND cust_ID = @customerID";
+            SqlDataSource1.SelectCommand = "SELECT * from INVOICE WHERE date_time BETWEEN CONVERT(datetime, @startDate) AND CONVERT(datetime, @endDate) AND cust_ID = @customerID";
             SqlDataSource1.CancelSelectOnNullParameter = false;
             if (startDate == "" || endDate == "" || customerID == "")
             {

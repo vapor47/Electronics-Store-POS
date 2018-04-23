@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="pos.master.cs" Inherits="ElectronicsPOS.pos" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="basic.master.cs" Inherits="ElectronicsPOS.basic" %>
 
 <!DOCTYPE html>
 
@@ -51,19 +51,6 @@
         nav ul li a:hover {
           color: #555;
         }
-        /*
-        nav li:hover ul{
-            display:block;
-        }
-        nav ul ul{
-            position:absolute;
-            display:none;
-        }
-        nav ul ul li{
-            display: inline;
-            position: center;
-        }
-            */
         /* SHIFT */
         nav.shift ul li a {
           position:relative;
@@ -154,13 +141,6 @@
                 <li><a href="CreateInvoice.aspx">New Transaction</a></li>
                 <li><a href="CheckStock.aspx">Check Price/Stock</a></li>
                 <li><a href="addCustomer.aspx">Add Customer</a></li>
-                <li><a href="addEmployee.aspx">Add Employee</a></li>
-                <li><a href="addSupplier.aspx">Add Supplier</a></li>
-                <li><a href="NewProduct.aspx">Add Product</a></li>
-                <li> <a href="EditProduct.aspx">Edit Product</a></li>
-                <li><a href="EditPrice.aspx">Edit Price</a></li>
-                <li><a href="Restock.aspx">Restock</a></li>
-                <li><a href="Reports.aspx">Reports</a></li>
                 <li runat="server" OnClick="logoff"><a href="Login.aspx">Log Out</a></li>
             </ul>
         </nav>
