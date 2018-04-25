@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="basic.master.cs" Inherits="ElectronicsPOS.basic" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="basic.master.cs" Inherits="ElectronicsPOS.basic" %>
 
 <!DOCTYPE html>
 
@@ -141,6 +141,7 @@
                 <li><a href="CreateInvoice.aspx">New Transaction</a></li>
                 <li><a href="CheckStock.aspx">Check Price/Stock</a></li>
                 <li><a href="addCustomer.aspx">Add Customer</a></li>
+                <li><a href="editCustomer.aspx">Edit Customer</a></li>
                 <li runat="server" OnClick="logoff"><a href="Login.aspx">Log Out</a></li>
             </ul>
         </nav>
