@@ -115,5 +115,18 @@ public partial class Restock : System.Web.UI.Page
         }
     }
 
-  
+    protected void ProductList_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        SqlConnection con = new SqlConnection(
+                     WebConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString);
+        con.Open();
+
+        String query = "select model from product where productID = " + ProductList.SelectedValue;   //get current quantity
+        SqlCommand cmd = new SqlCommand(query, con);
+
+        modelLbl.Text = (cmd.ExecuteScalar()).ToString();
+
+        con.Close();
+    }
+
 }

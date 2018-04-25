@@ -32,20 +32,6 @@ public partial class CheckStock : System.Web.UI.Page
         }
 
     }
-    protected override void OnPreInit(EventArgs e)
-        {
-            base.OnPreInit(e);
-            SqlConnection con = new SqlConnection(
-            WebConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString);
-            con.Open();
-            string query = "select privilege from EMPLOYEE where employeeID = " + Session["user"];
-            SqlCommand cmd = new SqlCommand(query, con);
-            int output = Convert.ToInt32(cmd.ExecuteScalar());
-            if (output == 1)
-                MasterPageFile = "pos.master";
-            else
-                MasterPageFile = "basic.master";
-        }
 
     protected void DepartmentList_SelectedIndexChanged(object sender, EventArgs e)
     {
@@ -78,9 +64,20 @@ public partial class CheckStock : System.Web.UI.Page
         int quantity;
         string query = "select quantity from PRODUCT where productID = " + ProductList.SelectedValue;   //get current quantity
         SqlCommand cmd = new SqlCommand(query, con);
+        modelLbl.Text = ProductList.SelectedValue.ToString();
         quantity = Convert.ToInt32(cmd.ExecuteScalar());
         quantityLabel.Text = quantity.ToString() + " unit(s)";
         con.Close();
+
+        con.Open();
+
+        query = "select model from product where productID = " + ProductList.SelectedValue;   //get current quantity
+        cmd = new SqlCommand(query, con);
+
+        modelLbl.Text = (cmd.ExecuteScalar()).ToString();
+       
+        con.Close();
+
 
         con.Open();
         
@@ -88,6 +85,8 @@ public partial class CheckStock : System.Web.UI.Page
         cmd = new SqlCommand(query, con);
 
         decimal price = Convert.ToDecimal(cmd.ExecuteScalar());
+        price = Math.Truncate(100 * price) / 100;
         PriceLabel.Text = "$" +  price.ToString();
+        con.Close();
     }
 }

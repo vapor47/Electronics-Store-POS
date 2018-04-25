@@ -16,6 +16,11 @@
         </asp:DropDownList></td>
                 </tr>
                 <tr>
+                    <td>Model number:</td>
+                    <td>
+                        <asp:Label ID="modelLbl" runat="server" Text=""></asp:Label></td>
+                    </tr>
+                <tr>
                     <td class="auto-style3">In stock:</td>
                     <td class="auto-style4">
                         <asp:Label ID="quantityLabel" runat="server" Text=""></asp:Label>

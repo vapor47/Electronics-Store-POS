@@ -19,11 +19,17 @@
                 <tr>
                     <td>Product name:</td>
                     <td>
-            <asp:DropDownList ID="ProductList" DataTextField = "name" DataValueField = "productID" runat="server" Width =400px AutoPostBack="True" >
+            <asp:DropDownList ID="ProductList" DataTextField = "name" DataValueField = "productID" runat="server" Width =400px AutoPostBack="True" OnSelectedIndexChanged="ProductList_SelectedIndexChanged" >
         </asp:DropDownList>
                         <asp:RangeValidator ID="RangeValidator4" runat="server" ControlToValidate="ProductList" ErrorMessage="Please select one product from the list." MaximumValue="1000" MinimumValue="1" Type="Integer"></asp:RangeValidator>
                     </td>
                 </tr>
+                <tr>
+                    <td>Model number:</td>
+                    <td>
+                        <asp:Label ID="modelLbl" runat="server" Text=""></asp:Label></td>
+                    </tr>
+                <tr>
                 <tr>
                     <td>Supplier</td>
                     <td>
