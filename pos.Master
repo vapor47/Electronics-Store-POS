@@ -94,6 +94,14 @@
           visibility: visible;
           height: 100%;
         }
+          ul[title]::before {
+            content: attr(title);
+            /* then add some nice styling as needed, eg: */
+            display: block;
+            font-weight: bold;
+            color:black;
+            padding: 4px;
+
 
         /* By Dominik Biedebach @domobch */
 
@@ -113,7 +121,6 @@
             background: #2ECC71;
           }
         }
-
         /* Keyframes */
         @-webkit-keyframes circle {
           0% {
@@ -140,6 +147,7 @@
             margin: auto;
             border-radius: 0;
           }
+}
         }
 
 /* By Dominik Biedebach @domobch */
@@ -154,7 +162,9 @@
                 <li><a href="CreateInvoice.aspx">New Transaction</a></li>
                 <li><a href="CheckStock.aspx">Check Price/Stock</a></li>
                 <li><a href="addCustomer.aspx">Add Customer</a></li>
+                <li> <a href="editCustomer.aspx">Edit Customer</a></li>
                 <li><a href="addEmployee.aspx">Add Employee</a></li>
+                <li> <a href="editEmployee.aspx">Edit Employee</a></li>
                 <li><a href="addSupplier.aspx">Add Supplier</a></li>
                 <li><a href="NewProduct.aspx">Add Product</a></li>
                 <li> <a href="EditProduct.aspx">Edit Product</a></li>
