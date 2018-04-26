@@ -40,9 +40,25 @@ public partial class NewProduct : System.Web.UI.Page
             string query = "insert into PRODUCT (model, quantity, brand, name, dept_no, color, size) values ('" + ModelTxt.Text + "',0,'" + BrandTxt.Text
                   + "','" + DescriptionTxt.Text + "','" + DepartmentList.SelectedValue + "','" + ColorTxt.Text + "','" + SizeTxt.Text + "')";
             SqlCommand cmd = new SqlCommand(query, con);
-            cmd.ExecuteNonQuery();
-            con.Close();
-            Response.Redirect("~/ManagerView.aspx");
+            try
+            {
+                // Write your data access code here 
+                cmd.ExecuteNonQuery();
+            }
+            catch (SqlException sqle)
+            {
+                string errorMessage = sqle.Message;
+                int errorCode = sqle.ErrorCode;
+                con.Close();
+                Response.Write("<script>  alert('Duplicated model number. Cannot add product');location.href=location.href;</script>");
+            }
+           
+            finally
+            {
+                con.Close();
+                Response.Write("<script>  alert('New product is successfully added.');location.href=location.href;</script>");
+            }
+            
         }
      
     }
